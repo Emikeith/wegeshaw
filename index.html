@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wegeshaw Magic Therapy | Professional Excellence Winnipeg</title>
+    <title>Wegeshaw Magic Therapy | Professional Wellness Winnipeg</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,500&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
@@ -19,111 +19,104 @@
             --text-dim: #777777;
         }
 
+        /* Base Reset */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; overflow-x: hidden; }
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--light-bg); color: var(--text-dark); line-height: 1.8; font-weight: 300; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--light-bg); color: var(--text-dark); line-height: 1.6; font-weight: 300; }
         h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
         a { text-decoration: none; transition: 0.3s ease; }
 
         /* Navigation */
         nav { 
             background: rgba(253, 253, 251, 0.98); backdrop-filter: blur(10px);
-            padding: 1.2rem 8%; display: flex; justify-content: space-between; 
+            padding: 1rem 5%; display: flex; justify-content: space-between; 
             align-items: center; position: sticky; top: 0; z-index: 1000;
             border-bottom: 1px solid rgba(189, 162, 130, 0.1);
         }
-        .logo { font-size: 1.8rem; color: var(--primary); font-weight: 300; letter-spacing: 4px; text-transform: uppercase; }
-        .nav-links a { margin-left: 30px; color: var(--text-dark); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
+        .logo { font-size: 1.2rem; color: var(--primary); letter-spacing: 2px; text-transform: uppercase; font-weight: 400; }
+        .nav-call { background: var(--primary); color: white; padding: 8px 15px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Hero */
+        /* Hero Section - Fluid Typography */
         .hero { 
-            height: 75vh; 
-            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), 
+            height: 85vh; 
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), 
                         url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1920&q=80') center/cover;
-            background-attachment: fixed;
             display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+            padding: 0 20px;
         }
-        .hero-content h1 { font-size: 5rem; color: var(--white); margin-bottom: 20px; font-style: italic; }
-        .hero-content p { font-size: 1rem; text-transform: uppercase; letter-spacing: 5px; color: var(--white); margin-bottom: 40px; }
-        .btn-luxe { border: 1px solid var(--white); color: var(--white); padding: 18px 45px; text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
+        .hero-content h1 { font-size: clamp(3rem, 12vw, 5.5rem); color: var(--white); margin-bottom: 15px; font-style: italic; line-height: 1.1; }
+        .hero-content p { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; color: var(--white); margin-bottom: 30px; opacity: 0.9; }
+        .btn-luxe { border: 1px solid var(--white); color: var(--white); padding: 15px 35px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; font-weight: 600; display: inline-block; }
         .btn-luxe:hover { background: var(--white); color: var(--primary); }
 
-        /* Section Styling */
-        section { padding: 100px 10%; }
-        .section-tag { color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 4px; font-weight: 600; display: block; margin-bottom: 15px; text-align: center; }
-        .section-title { font-size: 3.5rem; color: var(--primary); margin-bottom: 50px; text-align: center; }
+        /* Section Settings */
+        section { padding: 80px 6%; max-width: 1200px; margin: 0 auto; }
+        .section-tag { color: var(--accent); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 600; display: block; margin-bottom: 10px; text-align: center; }
+        .section-title { font-size: clamp(2.4rem, 8vw, 3.8rem); color: var(--primary); margin-bottom: 40px; text-align: center; line-height: 1.2; }
 
-        /* About */
-        .about-flex { display: flex; align-items: center; gap: 80px; flex-wrap: wrap; }
-        .about-img { flex: 1; min-width: 350px; height: 500px; background: url('https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=800&q=80') center/cover; border-radius: 4px; box-shadow: 20px -20px 0 var(--accent); }
-        .about-content { flex: 1; min-width: 350px; }
-        .about-content h2 { text-align: left; font-size: 3rem; margin-bottom: 25px; color: var(--primary); }
+        /* About Section */
+        .about-flex { display: flex; flex-direction: column; gap: 40px; }
+        .about-img { width: 100%; height: 400px; background: url('https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=800&q=80') center/cover; border-radius: 4px; box-shadow: 15px -15px 0 var(--accent); }
+        .about-content h2 { font-size: 2.5rem; margin-bottom: 20px; color: var(--primary); font-style: italic; }
+        .about-content p { margin-bottom: 15px; font-size: 1rem; color: var(--text-dark); }
 
-        /* Services Menu (Tabs) */
-        .services-card { background: var(--white); padding: 50px; border-radius: 8px; box-shadow: 0 15px 50px rgba(0,0,0,0.03); max-width: 1000px; margin: 0 auto; }
-        .service-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; border-bottom: 1px solid #eee; padding-bottom: 20px; }
-        .tab-btn { padding: 10px 15px; border: none; background: none; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); }
+        /* Services - Mobile-First Tabs */
+        .services-card { background: var(--white); padding: 30px 20px; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); }
+        .service-tabs { 
+            display: flex; overflow-x: auto; gap: 20px; margin-bottom: 30px; 
+            padding-bottom: 10px; border-bottom: 1px solid #eee;
+            -webkit-overflow-scrolling: touch;
+        }
+        .service-tabs::-webkit-scrollbar { display: none; }
+        .tab-btn { 
+            white-space: nowrap; padding: 10px 0; border: none; background: none; 
+            font-family: 'Montserrat'; font-weight: 600; font-size: 0.7rem; 
+            text-transform: uppercase; color: var(--text-dim); cursor: pointer;
+        }
         .tab-btn.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
-        .service-panel { display: none; animation: fadeIn 0.8s ease; }
-        .service-panel.active { display: block; }
-        .panel-desc { background: #f9faf9; padding: 25px; border-left: 4px solid var(--accent); margin-bottom: 30px; font-size: 1rem; font-style: italic; }
-        .price-item { display: grid; grid-template-columns: 2fr 1fr; border-bottom: 1px solid #eee; padding: 20px 0; align-items: center; }
-        .s-info h4 { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; color: var(--primary); }
-        .s-price { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--accent); text-align: right; }
-
-        /* CINEMATIC TESTIMONIAL SLIDER */
-        .testimonial-slider-container { background-color: #f4f6f5; position: relative; overflow: hidden; padding-bottom: 80px; }
-        .slider-header { text-align: center; margin-bottom: 40px; }
-        .rating-summary { color: var(--accent); font-size: 1.2rem; margin-bottom: 10px; }
-        .rating-summary span { color: var(--text-dark); font-family: 'Montserrat'; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-left: 10px; }
-
-        .testimonial-viewport { max-width: 900px; margin: 0 auto; position: relative; min-height: 400px; display: flex; align-items: center; justify-content: center; }
-        .testimonial-slide { position: absolute; opacity: 0; transition: all 0.8s ease; transform: translateX(30px); text-align: center; width: 100%; pointer-events: none; }
-        .testimonial-slide.active { opacity: 1; transform: translateX(0); pointer-events: auto; }
         
-        .quote-icon { font-size: 3rem; color: var(--accent); opacity: 0.3; margin-bottom: 20px; }
-        .slide-text { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-style: italic; line-height: 1.2; color: var(--primary); margin-bottom: 30px; }
-        .slide-author { font-weight: 600; letter-spacing: 3px; font-size: 0.8rem; text-transform: uppercase; color: var(--text-dark); }
-        .slide-author span { display: block; color: var(--accent); font-size: 0.7rem; margin-top: 5px; }
+        .service-panel { display: none; animation: fadeIn 0.5s ease; }
+        .service-panel.active { display: block; }
+        .panel-desc { background: #f9faf9; padding: 20px; border-left: 3px solid var(--accent); margin-bottom: 25px; font-size: 0.95rem; font-style: italic; }
+        
+        .price-item { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding: 18px 0; align-items: center; }
+        .s-info h4 { font-size: 1.05rem; color: var(--primary); font-family: 'Montserrat'; font-weight: 400; }
+        .s-info span { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; }
+        .s-price { font-family: 'Cormorant Garamond'; font-size: 1.8rem; color: var(--accent); font-weight: 500; }
 
-        /* Slider Controls */
-        .slider-dots { display: flex; justify-content: center; gap: 12px; margin-top: 50px; }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; cursor: pointer; transition: 0.3s; }
-        .dot.active { background: var(--primary); transform: scale(1.5); }
-
-        /* Review Invitation */
-        .review-invite { border-top: 1px solid rgba(0,0,0,0.05); padding-top: 60px; text-align: center; }
-        .invite-btn { display: inline-block; padding: 15px 35px; border: 1px solid var(--primary); color: var(--primary); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; font-size: 0.75rem; transition: 0.4s; }
-        .invite-btn:hover { background: var(--primary); color: white; }
+        /* Testimonial Slider */
+        .testimonials-section { background-color: #f4f6f5; text-align: center; }
+        .testimonial-viewport { min-height: 300px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .testimonial-slide { position: absolute; opacity: 0; transition: 0.6s ease; width: 100%; pointer-events: none; }
+        .testimonial-slide.active { opacity: 1; position: relative; pointer-events: auto; }
+        .slide-text { font-family: 'Cormorant Garamond'; font-size: 1.8rem; font-style: italic; line-height: 1.3; color: var(--primary); margin-bottom: 20px; }
+        .slide-author { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
 
         /* Footer */
-        footer { background: var(--primary); color: white; padding: 80px 10% 40px; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 40px; }
-        .f-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 25px; }
-        .f-link { color: white; font-size: 1.3rem; display: block; margin-bottom: 10px; font-family: 'Cormorant Garamond', serif; }
-        .f-hours { display: flex; justify-content: space-between; color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 10px; }
+        footer { background: var(--primary); color: white; padding: 60px 8% 30px; text-align: center; }
+        .footer-grid { display: grid; gap: 40px; margin-bottom: 40px; }
+        .f-col h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 20px; }
+        .f-link { color: white; font-size: 1.4rem; display: block; margin-bottom: 10px; font-family: 'Cormorant Garamond'; }
+        .f-hours { display: flex; justify-content: space-between; max-width: 280px; margin: 0 auto 10px; font-size: 0.85rem; opacity: 0.8; }
+
+        /* Desktop Adjustments */
+        @media (min-width: 769px) {
+            .about-flex { flex-direction: row; align-items: center; gap: 80px; }
+            .about-img, .about-content { flex: 1; }
+            .footer-grid { grid-template-columns: 1fr 1fr; text-align: left; }
+            .f-hours { margin: 0 0 10px; }
+            nav { padding: 1.5rem 8%; }
+            .logo { font-size: 1.6rem; }
+        }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 3rem; }
-            .section-title { font-size: 2.5rem; }
-            .slide-text { font-size: 1.6rem; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-        }
     </style>
 </head>
 <body>
 
 <nav>
-    <a href="#" class="logo">Wegeshaw</a>
-    <div class="nav-links">
-        <a href="#about">Philosophy</a>
-        <a href="#services">Rituals</a>
-        <a href="#testimonials">Experiences</a>
-        <a href="#contact">Contact</a>
-    </div>
+    <a href="#" class="logo">Wegeshaw Magic</a>
+    <a href="tel:+14318873344" class="nav-call"><i class="fas fa-phone-alt"></i> Call</a>
 </nav>
 
 <section class="hero">
@@ -138,158 +131,123 @@
     <div class="about-flex">
         <div class="about-img" data-aos="fade-right"></div>
         <div class="about-content" data-aos="fade-left">
-            <span class="section-tag" style="text-align: left;">The Narrative</span>
+            <span class="section-tag" style="text-align: left;">The Philosophy</span>
             <h2>A Sanitizing Relief.</h2>
-            <p>Welcome to Wegeshaw Magic Therapy. My journey is rooted in my foundation as an educator and community organizer. I provide a "brave space" to listen to your body’s needs.</p>
-            <p>By blending technical precision with an intuitive, empathetic flow, I help my clients release physical burdens and reclaim their inner vitality.</p>
+            <p>Welcome to Wegeshaw Magic Therapy. My practice is built on the belief that massage is a vital dialogue between mind and body.</p>
+            <p>As a community educator and therapist, I provide a "brave space" where you can release the physical burdens of stress and reclaim your inner vitality through technical precision and empathetic flow.</p>
         </div>
     </div>
 </section>
 
-<section id="services" style="background-color: #f9fbf9;">
+<section id="services">
     <span class="section-tag">Curated Treatments</span>
-    <h2 class="section-title">The Ritual Menu.</h2>
-    <div class="services-card" data-aos="zoom-in">
+    <h2 class="section-title">Ritual Menu</h2>
+    
+    <div class="services-card" data-aos="fade-up">
         <div class="service-tabs">
-            <button class="tab-btn active" onclick="openService(event, 'relaxation')">Relaxation</button>
-            <button class="tab-btn" onclick="openService(event, 'deep-tissue')">Deep Tissue</button>
-            <button class="tab-btn" onclick="openService(event, 'therapeutic')">Therapeutic</button>
-            <button class="tab-btn" onclick="openService(event, 'prenatal')">Prenatal</button>
-            <button class="tab-btn" onclick="openService(event, 'sports')">Sports</button>
-            <button class="tab-btn" onclick="openService(event, 'specialty')">Specialty</button>
+            <button class="tab-btn active" onclick="openService(event, 'relax')">Relaxation</button>
+            <button class="tab-btn" onclick="openService(event, 'deep')">Deep Tissue</button>
+            <button class="tab-btn" onclick="openService(event, 'thera')">Therapeutic</button>
+            <button class="tab-btn" onclick="openService(event, 'pre')">Prenatal</button>
+            <button class="tab-btn" onclick="openService(event, 'sport')">Sports</button>
         </div>
 
-        <div id="relaxation" class="service-panel active">
+        <div id="relax" class="service-panel active">
             <div class="panel-desc">Smooth, rhythmic treatment to calm the nervous system.</div>
-            <div class="price-item"><div class="s-info"><h4>Essential Flow</h4><span>60m</span></div><div class="s-price">$100</div></div>
-            <div class="price-item"><div class="s-info"><h4>Deep Sanctuary</h4><span>90m</span></div><div class="s-price">$145</div></div>
+            <div class="price-item"><div class="s-info"><h4>Essential Flow</h4><span>60 Minutes</span></div><div class="s-price">$100</div></div>
+            <div class="price-item"><div class="s-info"><h4>Deep Sanctuary</h4><span>90 Minutes</span></div><div class="s-price">$145</div></div>
         </div>
-        <div id="deep-tissue" class="service-panel">
-            <div class="panel-desc">Focused pressure for chronic tension.</div>
-            <div class="price-item"><div class="s-info"><h4>Restoration</h4><span>60m</span></div><div class="s-price">$115</div></div>
+
+        <div id="deep" class="service-panel">
+            <div class="panel-desc">Focused pressure targeting chronic tension and "knots."</div>
+            <div class="price-item"><div class="s-info"><h4>Restoration</h4><span>60 Minutes</span></div><div class="s-price">$115</div></div>
+            <div class="price-item"><div class="s-info"><h4>Total Release</h4><span>90 Minutes</span></div><div class="s-price">$160</div></div>
         </div>
-         <div id="therapeutic" class="service-panel">
-            <div class="panel-desc">Clinical approach to localized pain.</div>
-            <div class="price-item"><div class="s-info"><h4>Clinical Care</h4><span>60m</span></div><div class="s-price">$110</div></div>
+
+        <div id="thera" class="service-panel">
+            <div class="panel-desc">Clinical approach to specific injuries or postural issues.</div>
+            <div class="price-item"><div class="s-info"><h4>Clinical Care</h4><span>60 Minutes</span></div><div class="s-price">$110</div></div>
+            <div class="price-item"><div class="s-info"><h4>Advanced Therapy</h4><span>90 Minutes</span></div><div class="s-price">$155</div></div>
         </div>
-         <div id="prenatal" class="service-panel">
-            <div class="panel-desc">Safe care for expectant mothers.</div>
-            <div class="price-item"><div class="s-info"><h4>Motherhood Ritual</h4><span>60m</span></div><div class="s-price">$110</div></div>
+
+        <div id="pre" class="service-panel">
+            <div class="panel-desc">Nurturing care for expectant mothers (relief for back/hips).</div>
+            <div class="price-item"><div class="s-info"><h4>Motherhood Ritual</h4><span>60 Minutes</span></div><div class="s-price">$110</div></div>
         </div>
-         <div id="sports" class="service-panel">
-            <div class="panel-desc">Active stretching for muscular recovery.</div>
-            <div class="price-item"><div class="s-info"><h4>Athletic Restoration</h4><span>60m</span></div><div class="s-price">$115</div></div>
-        </div>
-         <div id="specialty" class="service-panel">
-            <div class="panel-desc">Bespoke sessions and Hot Stones.</div>
-            <div class="price-item"><div class="s-info"><h4>Hot Stone</h4><span>90m</span></div><div class="s-price">$165</div></div>
+
+        <div id="sport" class="service-panel">
+            <div class="panel-desc">Invigorating techniques to accelerate muscular recovery.</div>
+            <div class="price-item"><div class="s-info"><h4>Athletic Reset</h4><span>60 Minutes</span></div><div class="s-price">$115</div></div>
         </div>
     </div>
 </section>
 
-<section id="testimonials" class="testimonial-slider-container">
-    <div class="slider-header" data-aos="fade-up">
-        <span class="section-tag">Client Voices</span>
-        <h2 class="section-title">Stories of Transformation</h2>
-        <div class="rating-summary">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <span>Excellent Based on 50+ Experiences</span>
-        </div>
-    </div>
-
-    <div class="testimonial-viewport" data-aos="fade-up">
+<section class="testimonials-section">
+    <span class="section-tag">Experiences</span>
+    <h2 class="section-title">Client Stories</h2>
+    
+    <div class="testimonial-viewport">
         <div class="testimonial-slide active">
-            <i class="fas fa-quote-left quote-icon"></i>
             <p class="slide-text">"The level of care here is unmatched. It’s more than just a massage; it’s a total reset for my body and mind."</p>
-            <p class="slide-author">Sarah J. <span>Winnipeg Resident</span></p>
+            <p class="slide-author">— Sarah J.</p>
         </div>
         <div class="testimonial-slide">
-            <i class="fas fa-quote-left quote-icon"></i>
             <p class="slide-text">"Knowledgeable anatomy work that truly provides relief. The best therapeutic work I’ve ever received."</p>
-            <p class="slide-author">Mark R. <span>Deep Tissue Client</span></p>
+            <p class="slide-author">— Mark R.</p>
         </div>
         <div class="testimonial-slide">
-            <i class="fas fa-quote-left quote-icon"></i>
             <p class="slide-text">"As an expectant mother, finding safe care is vital. It was the first time in weeks my back felt pain-free."</p>
-            <p class="slide-author">Emily L. <span>Prenatal Ritual</span></p>
-        </div>
-        <div class="testimonial-slide">
-            <i class="fas fa-quote-left quote-icon"></i>
-            <p class="slide-text">"A necessary part of my marathon training. Professional, expert, and results-driven."</p>
-            <p class="slide-author">Chris M. <span>Athlete</span></p>
+            <p class="slide-author">— Emily L.</p>
         </div>
     </div>
 
-    <div class="slider-dots">
-        <div class="dot active" onclick="setSlide(0)"></div>
-        <div class="dot" onclick="setSlide(1)"></div>
-        <div class="dot" onclick="setSlide(2)"></div>
-        <div class="dot" onclick="setSlide(3)"></div>
-    </div>
-
-    <div class="review-invite" data-aos="fade-up">
-        <p style="color: var(--text-dim); margin-bottom: 20px;">Experienced the Wegeshaw Magic?</p>
-        <a href="mailto:wegeshawmagictherapy@gmail.com?subject=Testimonial" class="invite-btn">Share Your Experience</a>
+    <div style="margin-top: 40px;">
+        <a href="mailto:wegeshawmagictherapy@gmail.com" class="nav-call" style="background: none; color: var(--primary); border: 1px solid var(--primary);">Share Your Experience</a>
     </div>
 </section>
 
-<footer id="contact">
+<footer>
     <div class="footer-grid">
         <div class="f-col">
-            <h4>Inquiries</h4>
+            <h4>Location & Contact</h4>
             <a href="tel:+14318873344" class="f-link">+1 431 887 3344</a>
-            <a href="mailto:wegeshawmagictherapy@gmail.com" class="f-link">wegeshawmagictherapy@gmail.com</a>
+            <p>wegeshawmagictherapy@gmail.com</p>
+            <p>Winnipeg, Manitoba</p>
         </div>
         <div class="f-col">
-            <h4>Hours</h4>
+            <h4>Business Hours</h4>
             <div class="f-hours"><span>Mon – Fri</span><span>9am – 7pm</span></div>
-            <div class="f-hours"><span>Sat – Sun</span><span>Consult Appt</span></div>
-        </div>
-        <div class="f-col">
-            <h4>Billing</h4>
-            <p style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Direct billing available for Blue Cross, Canada Life, and more.</p>
+            <div class="f-hours"><span>Saturday</span><span>9am – 5pm</span></div>
+            <div class="f-hours"><span>Sunday</span><span>1:30pm – 5pm</span></div>
         </div>
     </div>
+    <p style="font-size: 0.65rem; letter-spacing: 1px; opacity: 0.5; margin-top: 40px;">© 2026 WEGESHAW MAGIC THERAPY</p>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
-    AOS.init({ duration: 1200, once: true });
+    AOS.init({ duration: 1000, once: true });
 
-    // Slider Logic
-    let currentSlide = 0;
+    // Testimonial Auto-Slider
+    let slideIdx = 0;
     const slides = document.querySelectorAll('.testimonial-slide');
-    const dots = document.querySelectorAll('.dot');
-
-    function setSlide(index) {
-        slides[currentSlide].classList.remove('active');
-        dots[currentSlide].classList.remove('active');
-        currentSlide = index;
-        slides[currentSlide].classList.add('active');
-        dots[currentSlide].classList.add('active');
+    function showSlides() {
+        slides.forEach(s => s.classList.remove('active'));
+        slideIdx++;
+        if (slideIdx > slides.length) { slideIdx = 1 }
+        slides[slideIdx-1].classList.add('active');
+        setTimeout(showSlides, 5000); 
     }
-
-    // Auto-advance slider
-    setInterval(() => {
-        let next = (currentSlide + 1) % slides.length;
-        setSlide(next);
-    }, 6000);
+    showSlides();
 
     // Tab Logic
-    function openService(evt, serviceName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("service-panel");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-            tabcontent[i].classList.remove("active");
-        }
-        tablinks = document.getElementsByClassName("tab-btn");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(serviceName).style.display = "block";
-        document.getElementById(serviceName).classList.add("active");
-        evt.currentTarget.className += " active";
+    function openService(evt, name) {
+        const panels = document.querySelectorAll('.service-panel');
+        const btns = document.querySelectorAll('.tab-btn');
+        panels.forEach(p => p.classList.remove('active'));
+        btns.forEach(b => b.classList.remove('active'));
+        document.getElementById(name).classList.add('active');
+        evt.currentTarget.classList.add('active');
     }
 </script>
 </body>
