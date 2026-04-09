@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wegeshaw | Professional Wellness</title>
+    <title>Wegeshaw | Professional Wellness Winnipeg</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
@@ -30,7 +30,6 @@
         
         /* Layout Utilities */
         section { padding: 80px 24px; max-width: 1000px; margin: 0 auto; }
-        .container { width: 100%; }
 
         /* Navigation - Glassmorphism */
         nav {
@@ -77,7 +76,6 @@
             text-align: center;
             color: var(--white);
             padding: 0 24px;
-            margin-top: 0;
         }
         .hero p { 
             font-size: 0.75rem; 
@@ -116,6 +114,7 @@
             padding: 40px 24px;
             border: 1px solid #f0f0f0;
             text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
         .philosophy-card p { margin-bottom: 20px; font-size: 1rem; }
 
@@ -191,11 +190,51 @@
             color: var(--accent);
         }
 
+        /* Testimonials Section */
+        .testimonials-section {
+            background-color: #f6f8f7;
+            text-align: center;
+            padding: 100px 24px;
+        }
+        .testimonial-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 200px;
+        }
+        .testimonial-slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            visibility: hidden;
+        }
+        .testimonial-slide.active {
+            opacity: 1;
+            visibility: visible;
+            position: relative;
+        }
+        .t-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.7rem;
+            font-style: italic;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .t-author {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
         /* Footer */
         footer {
             background: var(--primary);
             color: var(--white);
-            padding: 60px 24px;
+            padding: 80px 24px 60px;
             text-align: center;
         }
         .footer-logo { 
@@ -218,17 +257,14 @@
             opacity: 0.7;
         }
 
-        /* Desktop Polish */
-        @media (min-width: 768px) {
-            .tabs-list { justify-content: center; border: none; }
-            .tabs-container::after { display: none; }
-            section { padding: 100px 24px; }
-            .hero { height: 80vh; }
-        }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (min-width: 768px) {
+            .tabs-list { justify-content: center; border: none; }
+            .tabs-container::after { display: none; }
         }
     </style>
 </head>
@@ -325,6 +361,27 @@
     </div>
 </section>
 
+<section class="testimonials-section">
+    <div class="section-header">
+        <span>Experiences</span>
+        <h2>Client Stories</h2>
+    </div>
+    <div class="testimonial-container">
+        <div class="testimonial-slide active">
+            <span class="t-quote">"The level of care is unmatched. It’s more than just a massage; it’s a total reset for my body and mind."</span>
+            <span class="t-author">— Sarah J.</span>
+        </div>
+        <div class="testimonial-slide">
+            <span class="t-quote">"Knowledgeable anatomy work that truly provides relief. The best therapeutic work I’ve ever received."</span>
+            <span class="t-author">— Mark R.</span>
+        </div>
+        <div class="testimonial-slide">
+            <span class="t-quote">"A truly professional and welcoming environment. I left feeling lighter and more grounded."</span>
+            <span class="t-author">— Elena K.</span>
+        </div>
+    </div>
+</section>
+
 <footer>
     <span class="footer-logo">Wegeshaw</span>
     <div class="footer-info">
@@ -342,16 +399,27 @@
 </footer>
 
 <script>
+    // Tab Management
     function showTab(evt, tabName) {
         const panels = document.querySelectorAll('.panel');
         const triggers = document.querySelectorAll('.tab-trigger');
-        
         panels.forEach(p => p.classList.remove('active'));
         triggers.forEach(t => t.classList.remove('active'));
-        
         document.getElementById(tabName).classList.add('active');
         evt.currentTarget.classList.add('active');
     }
+
+    // Auto-Rotating Testimonials
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.testimonial-slide');
+    
+    function rotateTestimonials() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    setInterval(rotateTestimonials, 5000);
 </script>
 
 </body>
