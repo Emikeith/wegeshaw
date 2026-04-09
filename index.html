@@ -3,231 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wegeshaw | Professional Therapy Winnipeg</title>
+    <title>Wegeshaw | Winnipeg Professional Therapy</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,500&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@100;300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
         :root {
-            --primary: #2d5a56; 
-            --accent: #bda282; 
-            --light-bg: #fdfdfb; 
-            --white: #ffffff;
-            --text-dark: #333333;
-            --text-dim: #777777;
+            --primary: #1a3a36; /* Deeper Forest */
+            --accent: #bda282;  /* Champagne Gold */
+            --bg: #fefefe;
+            --text: #222222;
+            --text-light: #777777;
+            --glass: rgba(255, 255, 255, 0.85);
         }
 
-        /* Essential Resets */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; overflow-x: hidden; }
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--light-bg); color: var(--text-dark); line-height: 1.7; font-weight: 300; }
-        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+        /* Essential Modern Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.8; }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: -0.02em; }
 
-        /* Slim Mobile Nav */
+        /* Sophisticated Navigation */
         nav { 
-            background: rgba(253, 253, 251, 0.98); backdrop-filter: blur(10px);
-            padding: 1rem 6%; display: flex; justify-content: space-between; 
-            align-items: center; position: sticky; top: 0; z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 1.5rem 8%; display: flex; justify-content: space-between; align-items: center;
+            background: var(--glass); backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
         }
-        .logo { font-size: 1.2rem; color: var(--primary); letter-spacing: 3px; text-transform: uppercase; font-weight: 400; }
-        .nav-call { background: var(--primary); color: white; padding: 8px 15px; border-radius: 2px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
+        .brand { font-size: 1.4rem; letter-spacing: 5px; text-transform: uppercase; color: var(--primary); font-weight: 300; }
+        .book-btn { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); border: 1px solid var(--primary); padding: 8px 16px; text-decoration: none; transition: 0.4s; }
+        .book-btn:hover { background: var(--primary); color: white; }
 
-        /* Hero - Text Protection Layer */
+        /* Cinematic Hero Section */
         .hero { 
-            height: 80vh; 
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), 
-                        url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1500&q=80') center/cover;
-            display: flex; align-items: center; justify-content: center; text-align: center; color: white;
-            padding: 0 20px;
+            height: 90vh; position: relative; display: flex; align-items: center; justify-content: center;
+            background: #000; overflow: hidden;
         }
-        .hero-content h1 { font-size: clamp(3.5rem, 15vw, 6.5rem); margin-bottom: 10px; font-style: italic; }
-        .hero-content p { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 30px; font-weight: 400; }
-        .btn-luxe { border: 1px solid var(--white); color: var(--white); padding: 15px 35px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; display: inline-block; }
+        .hero-img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1600&q=80') center/cover;
+            opacity: 0.65; transform: scale(1.05); transition: 10s linear;
+        }
+        .hero:hover .hero-img { transform: scale(1); }
+        .hero-content { position: relative; text-align: center; color: white; padding: 0 10%; z-index: 2; }
+        .hero-content p { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 6px; margin-bottom: 20px; font-weight: 300; }
+        .hero-content h1 { font-size: clamp(4rem, 15vw, 7.5rem); line-height: 0.9; margin-bottom: 35px; font-style: italic; }
+        .hero-cta { font-family: 'Montserrat'; font-size: 0.75rem; color: white; border: 1px solid white; padding: 18px 45px; text-decoration: none; text-transform: uppercase; letter-spacing: 3px; }
 
-        /* General Section Styling */
-        section { padding: 80px 8%; max-width: 1100px; margin: 0 auto; }
-        .section-tag { color: var(--accent); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 4px; display: block; margin-bottom: 15px; text-align: center; font-weight: 600; }
-        .section-title { font-size: 3rem; color: var(--primary); margin-bottom: 40px; text-align: center; font-style: italic; }
+        /* Elegant Sectioning */
+        section { padding: 100px 10%; max-width: 1200px; margin: 0 auto; }
+        .tagline { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 5px; color: var(--accent); display: block; margin-bottom: 20px; text-align: center; font-weight: 600; }
+        .title { font-size: clamp(2.5rem, 8vw, 4.5rem); text-align: center; color: var(--primary); margin-bottom: 50px; }
 
-        /* Philosophy - Mobile Optimized */
-        .about-text { text-align: center; max-width: 700px; margin: 0 auto; }
-        .about-text p { margin-bottom: 25px; font-size: 1.05rem; line-height: 1.8; }
-        .about-image-desktop { display: none; }
+        /* Philosophy Grid */
+        .phil-grid { display: flex; flex-direction: column; gap: 60px; align-items: center; }
+        .phil-content { text-align: center; max-width: 700px; }
+        .phil-content p { font-size: 1.1rem; color: #444; margin-bottom: 25px; font-weight: 300; }
+        .phil-img { display: none; width: 100%; height: 500px; border-radius: 2px; }
 
-        /* Ritual Menu with Visual Swipe Cue */
-        .menu-header-wrapper { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; }
-        .swipe-indicator { color: var(--accent); font-size: 0.8rem; animation: pulseRight 1.5s infinite; }
-        
-        .service-tabs { 
-            display: flex; overflow-x: auto; gap: 25px; margin-bottom: 30px; 
-            padding-bottom: 15px; border-bottom: 1px solid #eee;
+        /* Boutique Menu - Mobile Optimized Scroll */
+        .menu-wrapper { position: relative; margin-top: 40px; }
+        .menu-scroll { 
+            display: flex; overflow-x: auto; gap: 40px; padding-bottom: 15px;
             scrollbar-width: none; -webkit-overflow-scrolling: touch;
+            border-bottom: 1px solid #eee;
         }
-        .service-tabs::-webkit-scrollbar { display: none; }
-        
-        .tab-btn { 
-            white-space: nowrap; padding: 5px 0; border: none; background: none; 
-            font-family: 'Montserrat'; font-weight: 600; font-size: 0.7rem; 
-            text-transform: uppercase; color: var(--text-dim); cursor: pointer; letter-spacing: 1px;
+        .menu-scroll::-webkit-scrollbar { display: none; }
+        .tab-trigger { 
+            white-space: nowrap; background: none; border: none; font-family: 'Montserrat';
+            text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px;
+            color: var(--text-light); cursor: pointer; padding-bottom: 10px; transition: 0.3s;
         }
-        .tab-btn.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
+        .tab-trigger.active { color: var(--primary); font-weight: 600; border-bottom: 2px solid var(--primary); }
         
-        .service-panel { display: none; animation: fadeIn 0.5s ease; }
-        .service-panel.active { display: block; }
-        .panel-desc { font-size: 0.95rem; font-style: italic; color: var(--text-dim); margin-bottom: 30px; line-height: 1.6; padding: 20px; background: #f9fbf9; border-left: 3px solid var(--accent); }
+        /* Service Panel Content */
+        .panel { display: none; padding-top: 40px; animation: fadeInUp 0.6s ease forwards; }
+        .panel.active { display: block; }
+        .panel-desc { font-family: 'Cormorant Garamond'; font-size: 1.3rem; font-style: italic; color: #555; margin-bottom: 40px; line-height: 1.6; padding: 30px; background: #f9f9f7; border-left: 1px solid var(--accent); }
         
-        .price-item { display: flex; justify-content: space-between; border-bottom: 1px solid #f0f0f0; padding: 20px 0; align-items: center; }
-        .s-info h4 { font-size: 1.1rem; color: var(--primary); font-family: 'Montserrat'; font-weight: 400; margin-bottom: 4px; }
-        .s-info span { font-size: 0.75rem; text-transform: uppercase; color: var(--text-dim); letter-spacing: 1px; }
-        .s-price { font-family: 'Cormorant Garamond'; font-size: 1.8rem; color: var(--accent); font-weight: 500; }
+        .rate-row { display: flex; justify-content: space-between; align-items: flex-end; padding: 25px 0; border-bottom: 1px solid #f0f0f0; }
+        .rate-name h4 { font-family: 'Montserrat'; font-weight: 300; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .rate-name span { font-size: 0.7rem; color: var(--text-light); text-transform: uppercase; }
+        .rate-price { font-family: 'Cormorant Garamond'; font-size: 2.2rem; color: var(--accent); font-weight: 300; }
 
         /* Testimonials */
-        .testimonials { background: #f4f6f5; text-align: center; padding: 80px 10%; }
-        .testimonial-viewport { min-height: 250px; position: relative; display: flex; align-items: center; justify-content: center; }
-        .testimonial-slide { position: absolute; opacity: 0; transition: 0.8s ease; width: 100%; }
-        .testimonial-slide.active { opacity: 1; position: relative; }
-        .slide-text { font-family: 'Cormorant Garamond'; font-size: 1.8rem; font-style: italic; color: var(--primary); margin-bottom: 20px; line-height: 1.3; }
-        .slide-author { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+        .testimonial-bg { background: #1a3a36; color: white; text-align: center; padding: 100px 10%; }
+        .t-quote { font-family: 'Cormorant Garamond'; font-size: 2rem; font-style: italic; opacity: 0.9; margin-bottom: 30px; display: block; }
+        .t-author { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 600; color: var(--accent); }
 
-        /* Footer */
-        footer { background: var(--primary); color: white; padding: 80px 10% 50px; text-align: center; }
-        .footer-logo { font-size: 1.6rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 30px; display: block; font-weight: 300; }
-        .f-hours { display: flex; justify-content: space-between; max-width: 300px; margin: 0 auto 15px; font-size: 0.9rem; opacity: 0.8; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
-        .f-contact { margin-top: 40px; }
-        .f-contact a { color: white; font-size: 1.5rem; font-family: 'Cormorant Garamond'; display: block; margin-bottom: 10px; }
+        /* Minimal Footer */
+        footer { padding: 80px 10% 40px; text-align: center; border-top: 1px solid #f0f0f0; }
+        .footer-brand { font-size: 1.8rem; letter-spacing: 8px; text-transform: uppercase; margin-bottom: 40px; display: block; }
+        .schedule { max-width: 400px; margin: 0 auto 50px; }
+        .s-day { display: flex; justify-content: space-between; font-size: 0.85rem; border-bottom: 1px solid #f7f7f7; padding: 10px 0; }
+        .contact-info a { display: block; font-family: 'Cormorant Garamond'; font-size: 1.8rem; color: var(--primary); text-decoration: none; margin-bottom: 10px; }
 
         /* Animations */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulseRight { 0%, 100% { transform: translateX(0); opacity: 0.5; } 50% { transform: translateX(5px); opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Desktop Adjustments */
+        /* Desktop Polish */
         @media (min-width: 992px) {
-            .about-flex { display: flex; align-items: center; gap: 80px; text-align: left; }
-            .about-text { flex: 1.2; text-align: left; margin: 0; }
-            .about-image-desktop { display: block; flex: 1; height: 500px; background: url('https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=800&q=80') center/cover; border-radius: 4px; box-shadow: 20px -20px 0 var(--accent); }
-            .section-tag, .section-title { text-align: left; }
-            .swipe-indicator { display: none; }
-            .service-tabs { justify-content: center; border-bottom: 1px solid #eee; }
+            .phil-grid { flex-direction: row; text-align: left; }
+            .phil-content { flex: 1; text-align: left; }
+            .phil-img { display: block; flex: 1; background: url('https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=800&q=80') center/cover; }
+            .tagline, .title { text-align: left; }
+            .menu-scroll { justify-content: center; gap: 60px; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <a href="#" class="logo">Wegeshaw</a>
-    <a href="tel:+14318873344" class="nav-call">Call to Book</a>
+    <div class="brand">Wegeshaw</div>
+    <a href="tel:+14318873344" class="book-btn">Contact</a>
 </nav>
 
-<section class="hero">
+<div class="hero">
+    <div class="hero-img"></div>
     <div class="hero-content">
-        <p>Winnipeg Professional Massage</p>
-        <h1>Wegeshaw.</h1>
-        <a href="tel:+14318873344" class="btn-luxe">Begin Your Ritual</a>
+        <p>Winnipeg Professional Therapy</p>
+        <h1>Restoration.</h1>
+        <a href="#rituals" class="hero-cta">View Rituals</a>
     </div>
-</section>
+</div>
 
-<section id="about">
-    <span class="section-tag">Philosophy</span>
-    <h2 class="section-title">Wegeshaw</h2>
-    <div class="about-flex">
-        <div class="about-image-desktop"></div>
-        <div class="about-text">
-            <p>Welcome to Wegeshaw Magic Therapy. My journey is rooted in my foundation as an educator and community organizer, providing a "brave space" to listen to your body’s unique needs.</p>
-            <p>By blending technical precision with an intuitive, empathetic flow, I help my clients release physical burdens and reclaim their inner vitality. Every session is a curated ritual designed for your total restoration.</p>
+<section id="philosophy">
+    <div class="phil-grid">
+        <div class="phil-content">
+            <span class="tagline">Our Philosophy</span>
+            <h2 class="title">A Brave Space.</h2>
+            <p>Rooted in my journey as an educator and community organizer, Wegeshaw Magic Therapy is built on the principle of the "Brave Space"—a sanctuary where technical clinical expertise meets intuitive, empathetic flow.</p>
+            <p>I believe healing is a dialogue. By listening to your body’s unique narrative, we work together to release physical burdens and reclaim your essential vitality.</p>
         </div>
+        <div class="phil-img"></div>
     </div>
 </section>
 
 <section id="rituals">
-    <span class="section-tag">Services</span>
-    <h2 class="section-title">The Rituals</h2>
+    <span class="tagline">Curated Care</span>
+    <h2 class="title" style="text-align: center;">The Rituals</h2>
     
-    <div class="menu-header-wrapper">
-        <div class="service-tabs">
-            <button class="tab-btn active" onclick="openTab(event, 'relax')">Relaxation</button>
-            <button class="tab-btn" onclick="openTab(event, 'deep')">Deep Tissue</button>
-            <button class="tab-btn" onclick="openTab(event, 'thera')">Therapeutic</button>
-            <button class="tab-btn" onclick="openTab(event, 'pre')">Prenatal</button>
-            <button class="tab-btn" onclick="openTab(event, 'sport')">Sports</button>
+    <div class="menu-wrapper">
+        <div class="menu-scroll">
+            <button class="tab-trigger active" onclick="showTab(event, 'relax')">Relaxation</button>
+            <button class="tab-trigger" onclick="showTab(event, 'deep')">Deep Tissue</button>
+            <button class="tab-trigger" onclick="showTab(event, 'thera')">Therapeutic</button>
+            <button class="tab-trigger" onclick="showTab(event, 'pre')">Prenatal</button>
+            <button class="tab-trigger" onclick="showTab(event, 'sport')">Sports</button>
         </div>
-        <i class="fas fa-chevron-right swipe-indicator"></i>
-    </div>
 
-    <div id="relax" class="service-panel active">
-        <div class="panel-desc">A smooth, rhythmic treatment designed specifically to quiet the mind and calm the nervous system. Ideal for those seeking an escape from daily stress and a return to tranquility.</div>
-        <div class="price-item"><div class="s-info"><h4>Essential Flow</h4><span>60 Minutes</span></div><div class="s-price">$100</div></div>
-        <div class="price-item"><div class="s-info"><h4>Deep Sanctuary</h4><span>90 Minutes</span></div><div class="s-price">$145</div></div>
-    </div>
+        <div id="relax" class="panel active">
+            <div class="panel-desc">"A smooth, rhythmic treatment designed specifically to quiet the mind and calm the nervous system. Ideal for those seeking a total escape from daily stress."</div>
+            <div class="rate-row">
+                <div class="rate-name"><h4>Essential Flow</h4><span>60 Minutes</span></div>
+                <div class="rate-price">$100</div>
+            </div>
+            <div class="rate-row">
+                <div class="rate-name"><h4>Deep Sanctuary</h4><span>90 Minutes</span></div>
+                <div class="rate-price">$145</div>
+            </div>
+        </div>
 
-    <div id="deep" class="service-panel">
-        <div class="panel-desc">Focused pressure targeting the deeper layers of muscle tissue. This ritual is perfect for chronic tension, stubborn "knots," and restoring range of motion.</div>
-        <div class="price-item"><div class="s-info"><h4>Restoration</h4><span>60 Minutes</span></div><div class="s-price">$115</div></div>
-        <div class="price-item"><div class="s-info"><h4>Total Release</h4><span>90 Minutes</span></div><div class="s-price">$160</div></div>
-    </div>
+        <div id="deep" class="panel">
+            <div class="panel-desc">"Focused pressure targeting the deeper layers of muscle tissue. Perfect for chronic tension, stubborn knots, and restoring full range of motion."</div>
+            <div class="rate-row">
+                <div class="rate-name"><h4>Restoration</h4><span>60 Minutes</span></div>
+                <div class="rate-price">$115</div>
+            </div>
+            <div class="rate-row">
+                <div class="rate-name"><h4>Total Release</h4><span>90 Minutes</span></div>
+                <div class="rate-price">$160</div>
+            </div>
+        </div>
 
-    <div id="thera" class="service-panel">
-        <div class="panel-desc">A clinical approach targeting specific injuries, postural imbalances, or localized pain. We work together to identify the root cause of discomfort.</div>
-        <div class="price-item"><div class="s-info"><h4>Clinical Care</h4><span>60 Minutes</span></div><div class="s-price">$110</div></div>
-        <div class="price-item"><div class="s-info"><h4>Advanced Therapy</h4><span>90 Minutes</span></div><div class="s-price">$155</div></div>
-    </div>
+        <div id="thera" class="panel">
+            <div class="panel-desc">"A clinical approach targeting specific injuries or postural imbalances. We identify the root cause of discomfort to provide long-lasting relief."</div>
+            <div class="rate-row">
+                <div class="rate-name"><h4>Clinical Care</h4><span>60 Minutes</span></div>
+                <div class="rate-price">$110</div>
+            </div>
+            <div class="rate-row">
+                <div class="rate-name"><h4>Advanced Therapy</h4><span>90 Minutes</span></div>
+                <div class="rate-price">$155</div>
+            </div>
+        </div>
 
-    <div id="pre" class="service-panel">
-        <div class="panel-desc">Safe and nurturing care for expectant mothers. This session focuses on relieving pregnancy-related discomfort in the lower back, hips, and legs.</div>
-        <div class="price-item"><div class="s-info"><h4>Motherhood Ritual</h4><span>60 Minutes</span></div><div class="s-price">$110</div></div>
-    </div>
+        <div id="pre" class="panel">
+            <div class="panel-desc">"Nurturing care for expectant mothers. Focusing on safe, effective relief for back and hip pain during all stages of pregnancy."</div>
+            <div class="rate-row">
+                <div class="rate-name"><h4>Motherhood Ritual</h4><span>60 Minutes</span></div>
+                <div class="rate-price">$110</div>
+            </div>
+        </div>
 
-    <div id="sport" class="service-panel">
-        <div class="panel-desc">Invigorating techniques designed to improve flexibility, reduce fatigue, and accelerate muscular recovery for the active individual.</div>
-        <div class="price-item"><div class="s-info"><h4>Athletic Reset</h4><span>60 Minutes</span></div><div class="s-price">$115</div></div>
+        <div id="sport" class="panel">
+            <div class="panel-desc">"Invigorating techniques to improve flexibility, reduce fatigue, and accelerate muscular recovery for the modern athlete."</div>
+            <div class="rate-row">
+                <div class="rate-name"><h4>Athletic Reset</h4><span>60 Minutes</span></div>
+                <div class="rate-price">$115</div>
+            </div>
+        </div>
     </div>
 </section>
 
-<section class="testimonials">
-    <div class="testimonial-viewport">
-        <div class="testimonial-slide active">
-            <p class="slide-text">"The level of care here is unmatched. It’s more than just a massage; it’s a total reset for my body and mind."</p>
-            <p class="slide-author">— Sarah J. | Winnipeg</p>
-        </div>
-        <div class="testimonial-slide">
-            <p class="slide-text">"Knowledgeable anatomy work that truly provides relief. The best therapeutic work I’ve ever received."</p>
-            <p class="slide-author">— Mark R. | Deep Tissue</p>
-        </div>
-    </div>
-</section>
+<div class="testimonial-bg">
+    <span class="t-quote">"The level of care is unmatched. It’s more than just a massage; it’s a total reset for my body and mind."</span>
+    <span class="t-author">Sarah J. | Winnipeg</span>
+</div>
 
 <footer>
-    <span class="footer-logo">Wegeshaw</span>
-    <div class="f-hours"><span>Monday – Friday</span><span>9:00am – 7:00pm</span></div>
-    <div class="f-hours"><span>Saturday</span><span>9:00am – 5:00pm</span></div>
-    <div class="f-hours"><span>Sunday</span><span>1:30pm – 5:00pm</span></div>
-    
-    <div class="f-contact">
-        <a href="tel:+14318873344">+1 431 887 3344</a>
-        <p style="opacity:0.5; font-size:0.8rem;">wegeshawmagictherapy@gmail.com</p>
+    <span class="footer-brand">Wegeshaw</span>
+    <div class="schedule">
+        <div class="s-day"><span>Mon – Fri</span><span>9:00 AM – 7:00 PM</span></div>
+        <div class="s-day"><span>Saturday</span><span>9:00 AM – 5:00 PM</span></div>
+        <div class="s-day"><span>Sunday</span><span>1:30 PM – 5:00 PM</span></div>
     </div>
+    <div class="contact-info">
+        <a href="tel:+14318873344">431.887.3344</a>
+        <p style="font-size: 0.8rem; opacity: 0.5; letter-spacing: 2px;">wegeshawmagictherapy@gmail.com</p>
+    </div>
+    <p style="margin-top: 60px; font-size: 0.6rem; opacity: 0.3; letter-spacing: 3px;">&copy; 2026 WEGESHAW MAGIC THERAPY</p>
 </footer>
 
 <script>
-    // Tab Switching Logic
-    function openTab(evt, name) {
-        const panels = document.querySelectorAll('.service-panel');
-        const btns = document.querySelectorAll('.tab-btn');
+    function showTab(evt, name) {
+        const panels = document.querySelectorAll('.panel');
+        const triggers = document.querySelectorAll('.tab-trigger');
         panels.forEach(p => p.classList.remove('active'));
-        btns.forEach(b => b.classList.remove('active'));
+        triggers.forEach(t => t.classList.remove('active'));
         document.getElementById(name).classList.add('active');
         evt.currentTarget.classList.add('active');
     }
-
-    // Auto-Rotating Testimonials
-    let currentT = 0;
-    const tSlides = document.querySelectorAll('.testimonial-slide');
-    setInterval(() => {
-        tSlides[currentT].classList.remove('active');
-        currentT = (currentT + 1) % tSlides.length;
-        tSlides[currentT].classList.add('active');
-    }, 5000);
 </script>
+
 </body>
 </html>
