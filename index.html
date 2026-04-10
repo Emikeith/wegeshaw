@@ -146,11 +146,24 @@
         .final-price-box { margin: 20px 0; padding: 20px; background: #f0f3f2; }
         .final-price-box h2 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--accent); }
 
+        /* Testimonials */
+        .testimonials-section { background: #f8faf9; padding: 120px 20px; }
+        .testimonial-container { max-width: 800px; margin: 0 auto; position: relative; height: 250px; text-align: center; }
+        .testimonial-slide { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; transition: 1s ease; visibility: hidden; }
+        .testimonial-slide.active { opacity: 1; visibility: visible; }
+        .t-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 4vw, 1.8rem); font-style: italic; color: var(--primary); margin-bottom: 25px; display: block; }
+
         /* Footer */
         footer { background: var(--primary); color: white; padding: 80px 20px; text-align: center; }
         .hours-row { display: flex; justify-content: space-between; max-width: 300px; margin: 10px auto; font-size: 0.85rem; opacity: 0.7; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .nav-arrow { width: 40px; height: 40px; font-size: 1rem; }
+            .arrow-left { left: 10px; }
+            .arrow-right { right: 10px; }
+        }
     </style>
 </head>
 <body>
@@ -179,7 +192,7 @@
     </div>
     <div class="slide slide-deep">
         <div class="slide-content">
-            <h1>Deep Tissue.</h1>
+            <h1>Therapeutic & Deep Tissue.</h1>
             <p>Focused pressure to release chronic tension and restore mobility.</p>
         </div>
     </div>
@@ -201,7 +214,7 @@
     <div class="section-header"><span>The Practitioner</span><h2>The Hands Behind the Magic</h2></div>
     <div class="bio-box">
         <div class="bio-text">
-            “I chose to become a massage therapist because it allows me to fulfill my innate desire to help others. As a visually impaired person, I have a heightened sense of touch... My visual impairment fades into the background as I focus entirely on providing the best possible care for my clients.”
+            “I chose to become a massage therapist because it allows me to fulfill my innate desire to help others. As a visually impaired person, I have a heightened sense of touch, which enables me to connect with my clients on a profound level. When I lay my hands on someone’s body, I’m not hindered by what I can’t see visually; instead, I rely on my high palpation skills. The joy of easing someone’s pain, soothing their muscles, and facilitating their relaxation is immensely gratifying to me. My visual impairment fades into the background as I focus entirely on providing the best possible care for my clients. For me, massage therapy is not just a job; it’s my calling, my passion, and my way of making a positive impact in the lives of others.”
         </div>
         <div style="text-align:right;">
             <h4>Getachew Addgeh</h4>
@@ -226,8 +239,40 @@
         <div class="price-row"><div><h4>Full Swedish</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
         <div class="price-row"><div><h4>Extended Swedish</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
     </div>
+
+    <div id="relax" class="panel">
+        <div class="price-row"><div><h4>Light Reset</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
+        <div class="price-row"><div><h4>Total Sanctuary</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
+        <div class="price-row"><div><h4>Ultimate Drift</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
+    </div>
+
+    <div id="thera" class="panel">
+        <div class="price-row"><div><h4>Focused Therapy</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
+        <div class="price-row"><div><h4>Clinical Reset</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
+        <div class="price-row"><div><h4>Complete Restoration</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
+    </div>
+
+    <div id="deep" class="panel">
+        <div class="price-row"><div><h4>Direct Release</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
+        <div class="price-row"><div><h4>Core Deep Tissue</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
+        <div class="price-row"><div><h4>Intensive Alignment</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
+    </div>
+
+    <div id="head" class="panel">
+        <div class="price-row"><div><h4>Scalp Awakening</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
+        <div class="price-row"><div><h4>Ritual Focus</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
+        <div class="price-row"><div><h4>Total Zen</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
+    </div>
+
+    <div id="pre" class="panel">
+        <div class="price-row"><div><h4>Motherhood Glow</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
+        <div class="price-row"><div><h4>Nurturing Care</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
+        <div class="price-row"><div><h4>The Sanctuary</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
+    </div>
+
     <div class="ritual-cta">
         <h3 style="font-family:'Cormorant Garamond'; font-size:1.8rem; font-style:italic;">Ready to begin your restoration?</h3>
+        <p style="font-size:0.8rem; margin-top:10px; opacity:0.8;">Secure your preferred time with Getachew today.</p>
         <button class="cta-btn" onclick="openBooking()">Choose Your Ritual</button>
     </div>
 </section>
@@ -268,11 +313,21 @@
     </div>
 </div>
 
-<section style="background:#f8faf9; padding:120px 20px;" class="reveal">
+<section class="testimonials-section reveal">
     <div class="section-header"><span>Experiences</span><h2>Client Stories</h2></div>
-    <div style="text-align:center; max-width:800px; margin:auto;">
-        <p style="font-family:'Cormorant Garamond'; font-size:1.8rem; font-style:italic; color:var(--primary);">"The level of care is unmatched. True magic."</p>
-        <span style="text-transform:uppercase; letter-spacing:3px; font-size:0.75rem; color:var(--accent);">— Sarah J.</span>
+    <div class="testimonial-container">
+        <div class="testimonial-slide active">
+            <span class="t-quote">"The level of care is unmatched. As an athlete, I appreciate the deep anatomical understanding and precise touch."</span>
+            <span class="t-author">— Sarah J.</span>
+        </div>
+        <div class="testimonial-slide">
+            <span class="t-quote">"True magic. I left my 90-minute session feeling completely weightless. Best massage in Winnipeg."</span>
+            <span class="t-author">— Mark R.</span>
+        </div>
+        <div class="testimonial-slide">
+            <span class="t-quote">"Professional, welcoming, and effective. The intuitive sense of pressure was exactly what I needed."</span>
+            <span class="t-author">— Elena K.</span>
+        </div>
     </div>
 </section>
 
@@ -284,6 +339,7 @@
         <div class="hours-row"><span>Saturday</span><span>9:00 AM – 5:00 PM</span></div>
         <div class="hours-row"><span>Sunday</span><span>1:30 PM – 5:00 PM</span></div>
     </div>
+    <p style="margin-top: 50px; font-size: 0.6rem; opacity: 0.4; letter-spacing: 2px;">© 2026 WEGESHAW MAGIC THERAPY | WINNIPEG, MB</p>
 </footer>
 
 <script>
@@ -305,6 +361,7 @@
     }
     function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; updateCarousel(); }
     function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; updateCarousel(); }
+    function goToSlide(index) { currentSlide = index; updateCarousel(); }
     setInterval(nextSlide, 7000);
 
     // Tabs
@@ -315,16 +372,10 @@
         e.currentTarget.classList.add('active');
     }
 
-    // BOOKING ENGINE
+    // Booking Engine
     let selectedMassage = "";
-
-    function openBooking() {
-        document.getElementById('bookingModal').classList.add('active');
-        goToStep(1);
-    }
-    function closeBooking() {
-        document.getElementById('bookingModal').classList.remove('active');
-    }
+    function openBooking() { document.getElementById('bookingModal').classList.add('active'); goToStep(1); }
+    function closeBooking() { document.getElementById('bookingModal').classList.remove('active'); }
     function goToStep(step) {
         document.querySelectorAll('.booking-step').forEach(s => s.classList.remove('active'));
         document.getElementById('step' + step).classList.add('active');
@@ -339,6 +390,17 @@
         document.getElementById('finalDetails').innerText = dur;
         document.getElementById('finalPrice').innerText = price;
         goToStep(3);
+    }
+
+    // Testimonial Engine
+    let tSlide = 0;
+    const tSlides = document.querySelectorAll('.testimonial-slide');
+    if (tSlides.length > 0) {
+        setInterval(() => {
+            tSlides[tSlide].classList.remove('active');
+            tSlide = (tSlide + 1) % tSlides.length;
+            tSlides[tSlide].classList.add('active');
+        }, 5000);
     }
 </script>
 
