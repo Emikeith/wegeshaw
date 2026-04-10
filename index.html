@@ -69,10 +69,12 @@
         .arrow-left { left: 20px; }
         .arrow-right { right: 20px; }
 
+        /* Carousel Images */
         .slide-main { background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=2070'); }
         .slide-swedish { background-image: url('https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&q=80&w=2070'); }
         .slide-deep { background-image: url('https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&q=80&w=2070'); }
         .slide-head { background-image: url('https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=2070'); }
+        .slide-prenatal { background-image: url('https://images.unsplash.com/photo-1519415387722-a1c3bbef716c?auto=format&fit=crop&q=80&w=2070'); }
 
         .slide-content { position: relative; z-index: 2; max-width: 700px; }
         .slide h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 10vw, 5.5rem); font-style: italic; line-height: 1.1; margin-bottom: 20px; }
@@ -202,11 +204,19 @@
             <p>Indian Head Massage for total mental clarity and relief.</p>
         </div>
     </div>
+    <div class="slide slide-prenatal">
+        <div class="slide-content">
+            <h1>Prenatal Care.</h1>
+            <p>Specialized support for comfort and wellness during pregnancy.</p>
+        </div>
+    </div>
+    
     <div class="carousel-dots">
         <div class="dot active" onclick="goToSlide(0)"></div>
         <div class="dot" onclick="goToSlide(1)"></div>
         <div class="dot" onclick="goToSlide(2)"></div>
         <div class="dot" onclick="goToSlide(3)"></div>
+        <div class="dot" onclick="goToSlide(4)"></div>
     </div>
 </div>
 
@@ -214,7 +224,7 @@
     <div class="section-header"><span>The Practitioner</span><h2>The Hands Behind the Magic</h2></div>
     <div class="bio-box">
         <div class="bio-text">
-            “I chose to become a massage therapist because it allows me to fulfill my innate desire to help others. As a visually impaired person, I have a heightened sense of touch, which enables me to connect with my clients on a profound level. When I lay my hands on someone’s body, I’m not hindered by what I can’t see visually; instead, I rely on my high palpation skills. The joy of easing someone’s pain, soothing their muscles, and facilitating their relaxation is immensely gratifying to me. My visual impairment fades into the background as I focus entirely on providing the best possible care for my clients. For me, massage therapy is not just a job; it’s my calling, my passion, and my way of making a positive impact in the lives of others.”
+            “I chose to become a massage therapist because it allows me to fulfill my innate desire to help others. As a visually impaired person, I have a heightened sense of touch, which enables me to connect with my clients on a profound level... My visual impairment fades into the background as I focus entirely on providing the best possible care for my clients.”
         </div>
         <div style="text-align:right;">
             <h4>Getachew Addgeh</h4>
@@ -343,7 +353,6 @@
 </footer>
 
 <script>
-    // Reveal Engine
     function initReveal() {
         document.querySelectorAll('.reveal').forEach(r => {
             if (r.getBoundingClientRect().top < window.innerHeight * 0.9) r.classList.add('active');
@@ -352,19 +361,20 @@
     window.addEventListener('scroll', initReveal);
     window.addEventListener('load', initReveal);
 
-    // Carousel Logic
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
     function updateCarousel() {
         slides.forEach((s, i) => { s.classList.toggle('active', i === currentSlide); dots[i].classList.toggle('active', i === currentSlide); });
+        resetTimer();
     }
     function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; updateCarousel(); }
     function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; updateCarousel(); }
     function goToSlide(index) { currentSlide = index; updateCarousel(); }
-    setInterval(nextSlide, 7000);
 
-    // Tabs
+    let timer = setInterval(nextSlide, 7000);
+    function resetTimer() { clearInterval(timer); timer = setInterval(nextSlide, 7000); }
+
     function showTab(e, name) {
         document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
         document.querySelectorAll('.tab-trigger').forEach(t => t.classList.remove('active'));
@@ -372,7 +382,6 @@
         e.currentTarget.classList.add('active');
     }
 
-    // Booking Engine
     let selectedMassage = "";
     function openBooking() { document.getElementById('bookingModal').classList.add('active'); goToStep(1); }
     function closeBooking() { document.getElementById('bookingModal').classList.remove('active'); }
@@ -392,7 +401,6 @@
         goToStep(3);
     }
 
-    // Testimonial Engine
     let tSlide = 0;
     const tSlides = document.querySelectorAll('.testimonial-slide');
     if (tSlides.length > 0) {
