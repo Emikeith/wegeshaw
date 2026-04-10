@@ -166,9 +166,30 @@
         .testimonial-slide.active { opacity: 1; visibility: visible; }
         .t-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 4vw, 1.8rem); font-style: italic; color: var(--primary); margin-bottom: 25px; display: block; }
 
+        /* Admin Portal Styles */
+        #admin-portal { display: none; background: #f0f2f1; padding: 40px 20px; border-top: 3px solid var(--accent); }
+        .admin-form { background: white; padding: 30px; max-width: 500px; margin: 0 auto; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .admin-form label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--primary); }
+        .admin-input { width: 100%; padding: 12px; margin: 8px 0 20px 0; border: 1px solid #ddd; border-radius: 2px; font-family: inherit; }
+
         /* Footer */
         footer { background: var(--primary); color: white; padding: 80px 20px; text-align: center; }
         .hours-row { display: flex; justify-content: space-between; max-width: 300px; margin: 10px auto; font-size: 0.85rem; opacity: 0.7; }
+        .admin-link { margin-top: 25px; display: inline-block; font-size: 0.6rem; color: rgba(255,255,255,0.3); text-decoration: none; cursor: pointer; letter-spacing: 1px; }
+
+        /* PRINT STYLES - OPTIMIZED FOR ONE PAGE */
+        @media print {
+            @page { margin: 0.5cm; }
+            body * { display: none !important; }
+            #printableReceipt, #printableReceipt * { display: block !important; visibility: visible !important; }
+            #printableReceipt { 
+                position: absolute; left: 0; top: 0; width: 100%; 
+                display: block !important; padding: 20px; 
+                font-family: 'Cormorant Garamond', serif;
+                page-break-inside: avoid;
+            }
+        }
+        #printableReceipt { display: none; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -304,6 +325,106 @@
     </div>
 </section>
 
+<section id="admin-portal">
+    <div class="admin-form">
+        <h2 style="font-family: 'Cormorant Garamond'; text-align: center; margin-bottom: 20px;">Receipt Generator</h2>
+        
+        <label for="admName">Client Full Name</label>
+        <input type="text" id="admName" class="admin-input" placeholder="e.g. John Doe">
+        
+        <label for="admService">Massage Type</label>
+        <select id="admService" class="admin-input">
+            <option value="Swedish Massage">Swedish Massage</option>
+            <option value="Therapeutic & Deep Tissue">Therapeutic & Deep Tissue</option>
+            <option value="Indian Head Massage">Indian Head Massage</option>
+            <option value="Prenatal Massage">Prenatal Massage</option>
+            <option value="Relaxation Massage">Relaxation Massage</option>
+        </select>
+
+        <div style="display: flex; gap: 15px;">
+            <div style="flex: 1;">
+                <label for="admPrice">Price ($)</label>
+                <input type="number" id="admPrice" class="admin-input" value="80">
+            </div>
+            <div style="flex: 1;">
+                <label for="admIns">Insurance ($)</label>
+                <input type="number" id="admIns" class="admin-input" value="0">
+            </div>
+        </div>
+
+        <button class="cta-btn" style="width: 100%; border-radius: 2px;" onclick="generateAndPrint()">Generate Receipt</button>
+        <button class="admin-link" style="color: #666; margin-top: 15px; background: none; border: none; width: 100%;" onclick="location.reload()">Lock Portal</button>
+    </div>
+</section>
+
+<div id="printableReceipt">
+    <div style="text-align: center; border-bottom: 1.5px solid #1a3a36; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="font-size: 2.2rem; margin: 0; color: #1a3a36; letter-spacing: 1px;">WEGESHAW</h1>
+        <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-top: 2px;">Magic Therapy & Wellness</p>
+        <div style="margin-top: 10px; font-size: 0.8rem; font-family: 'Montserrat', sans-serif;">
+            <p>Winnipeg, MB | 431.887.3344 | info@wegeshaw.com</p>
+        </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; margin-bottom: 25px; font-family: 'Montserrat', sans-serif; font-size: 0.85rem;">
+        <div>
+            <p style="font-weight: 600; color: #666;">RECEIPT TO:</p>
+            <p id="pName" style="font-size: 1rem; font-weight: 600; margin-top: 2px;"></p>
+        </div>
+        <div style="text-align: right;">
+            <p><strong>RECEIPT NO:</strong> <span id="pNumber"></span></p>
+            <p><strong>DATE:</strong> <span id="pDate"></span></p>
+        </div>
+    </div>
+
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px; font-family: 'Montserrat', sans-serif; font-size: 0.9rem;">
+        <thead>
+            <tr style="background: #f8f8f8;">
+                <th style="text-align: left; padding: 10px; border: 1px solid #ddd;">Description</th>
+                <th style="text-align: right; padding: 10px; border: 1px solid #ddd;">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 12px; border: 1px solid #ddd;">
+                    <strong id="pService"></strong><br>
+                    <span style="font-size: 0.75rem; color: #555;">Registered Massage Therapy Treatment</span>
+                </td>
+                <td style="padding: 12px; border: 1px solid #ddd; text-align: right; vertical-align: top;" id="pSub"></td>
+            </tr>
+            <tr>
+                <td style="padding: 8px 12px; text-align: right; border: 1px solid #ddd; font-size: 0.85rem;">GST (5%)</td>
+                <td style="padding: 8px 12px; text-align: right; border: 1px solid #ddd; font-size: 0.85rem;" id="pTax"></td>
+            </tr>
+            <tr style="color: #777;">
+                <td style="padding: 8px 12px; text-align: right; border: 1px solid #ddd; font-size: 0.85rem;">Insurance Benefit Applied</td>
+                <td style="padding: 8px 12px; text-align: right; border: 1px solid #ddd; font-size: 0.85rem;" id="pIns"></td>
+            </tr>
+            <tr style="background: #1a3a36; color: white; font-weight: bold;">
+                <td style="padding: 12px; text-align: right; border: 1px solid #1a3a36;">Total Balance Paid</td>
+                <td style="padding: 12px; text-align: right; border: 1px solid #1a3a36;" id="pTotal"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 30px; border-top: 1px solid #ddd; padding-top: 15px; font-family: 'Montserrat', sans-serif; font-size: 0.85rem;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+            <div>
+                <p><strong>Practitioner:</strong> Getachew Addgeh, RMT</p>
+                <p><strong>RMT Registration #:</strong> [INSERT_RMT_NUMBER]</p>
+                <p><strong>GST Business #:</strong> [INSERT_GST_NUMBER]</p>
+            </div>
+            <div style="text-align: center; width: 180px;">
+                <div style="border-bottom: 1px solid #000; height: 30px;"></div>
+                <p style="font-size: 0.65rem; margin-top: 5px; text-transform: uppercase;">Authorized Signature</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 40px; font-size: 0.7rem; color: #666; font-style: italic;">
+            Thank you for choosing Wegeshaw. This is an official receipt for insurance and tax purposes.
+        </p>
+    </div>
+</div>
+
 <div class="modal-overlay" id="bookingModal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeBooking()">&times;</span>
@@ -356,6 +477,7 @@
         <div class="hours-row"><span>Sunday</span><span>1:30 PM – 5:00 PM</span></div>
     </div>
     <p style="margin-top: 50px; font-size: 0.6rem; opacity: 0.4; letter-spacing: 2px;">© 2026 WEGESHAW MAGIC THERAPY | WINNIPEG, MB</p>
+    <a class="admin-link" onclick="unlockAdmin()">Practitioner Login</a>
 </footer>
 
 <script>
@@ -402,6 +524,40 @@
         document.getElementById('finalDetails').innerText = dur;
         document.getElementById('finalPrice').innerText = price;
         goToStep(3);
+    }
+
+    // Admin & Receipt Logic
+    function unlockAdmin() {
+        const pin = prompt("Enter Practitioner PIN:");
+        if (pin === "1234") {
+            document.getElementById('admin-portal').style.display = 'block';
+            document.getElementById('admin-portal').scrollIntoView({ behavior: 'smooth' });
+        } else {
+            alert("Access Denied.");
+        }
+    }
+
+    function generateAndPrint() {
+        const name = document.getElementById('admName').value;
+        const service = document.getElementById('admService').value;
+        const price = parseFloat(document.getElementById('admPrice').value) || 0;
+        const ins = parseFloat(document.getElementById('admIns').value) || 0;
+        
+        if(!name) { alert("Please enter client name"); return; }
+
+        const gst = price * 0.05;
+        const total = (price + gst) - ins;
+
+        document.getElementById('pDate').innerText = new Date().toLocaleDateString();
+        document.getElementById('pNumber').innerText = "WMT-" + Date.now().toString().slice(-6);
+        document.getElementById('pName').innerText = name.toUpperCase();
+        document.getElementById('pService').innerText = service;
+        document.getElementById('pSub').innerText = "$" + price.toFixed(2);
+        document.getElementById('pTax').innerText = "$" + gst.toFixed(2);
+        document.getElementById('pIns').innerText = "-$" + ins.toFixed(2);
+        document.getElementById('pTotal').innerText = "$" + total.toFixed(2);
+
+        window.print();
     }
 </script>
 
