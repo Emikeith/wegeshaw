@@ -177,7 +177,7 @@
         .hours-row { display: flex; justify-content: space-between; max-width: 300px; margin: 10px auto; font-size: 0.85rem; opacity: 0.7; }
         .admin-link { margin-top: 25px; display: inline-block; font-size: 0.6rem; color: rgba(255,255,255,0.3); text-decoration: none; cursor: pointer; letter-spacing: 1px; }
 
-        /* PRINT STYLES - OPTIMIZED FOR ONE PAGE */
+        /* PRINT STYLES - FIXED ROW ALIGNMENT */
         @media print {
             @page { margin: 0.5cm; }
             body * { display: none !important; }
@@ -188,6 +188,8 @@
                 font-family: 'Cormorant Garamond', serif;
                 page-break-inside: avoid;
             }
+            #printableReceipt table { width: 100% !important; border-collapse: collapse !important; table-layout: auto !important; }
+            #printableReceipt td, #printableReceipt th { border: 1px solid #ddd !important; padding: 10px !important; }
         }
         #printableReceipt { display: none; }
 
@@ -358,18 +360,18 @@
 </section>
 
 <div id="printableReceipt">
-    <div style="text-align: center; border-bottom: 1.5px solid #1a3a36; padding-bottom: 15px; margin-bottom: 20px;">
-        <h1 style="font-size: 2.2rem; margin: 0; color: #1a3a36; letter-spacing: 1px;">WEGESHAW</h1>
-        <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-top: 2px;">Magic Therapy & Wellness</p>
-        <div style="margin-top: 10px; font-size: 0.8rem; font-family: 'Montserrat', sans-serif;">
+    <div style="text-align: center; border-bottom: 2px solid #1a3a36; padding-bottom: 15px; margin-bottom: 25px;">
+        <h1 style="font-size: 2.4rem; margin: 0; color: #1a3a36; letter-spacing: 2px; font-family: 'Cormorant Garamond', serif;">WEGESHAW</h1>
+        <p style="text-transform: uppercase; letter-spacing: 4px; font-size: 0.75rem; margin-top: 4px; font-family: 'Montserrat', sans-serif;">Magic Therapy & Wellness</p>
+        <div style="margin-top: 12px; font-size: 0.85rem; font-family: 'Montserrat', sans-serif;">
             <p>Winnipeg, MB | 431.887.3344 | info@wegeshaw.com</p>
         </div>
     </div>
 
-    <div style="display: flex; justify-content: space-between; margin-bottom: 25px; font-family: 'Montserrat', sans-serif; font-size: 0.85rem;">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 30px; font-family: 'Montserrat', sans-serif; font-size: 0.9rem;">
         <div>
-            <p style="font-weight: 600; color: #666;">RECEIPT TO:</p>
-            <p id="pName" style="font-size: 1rem; font-weight: 600; margin-top: 2px;"></p>
+            <p style="font-weight: 600; color: #777; font-size: 0.75rem;">RECEIPT TO:</p>
+            <p id="pName" style="font-size: 1.1rem; font-weight: 600; margin-top: 4px; color: #1a3a36;"></p>
         </div>
         <div style="text-align: right;">
             <p><strong>RECEIPT NO:</strong> <span id="pNumber"></span></p>
@@ -377,49 +379,49 @@
         </div>
     </div>
 
-    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px; font-family: 'Montserrat', sans-serif; font-size: 0.9rem;">
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px; font-family: 'Montserrat', sans-serif;">
         <thead>
-            <tr style="background: #f8f8f8;">
-                <th style="text-align: left; padding: 10px; border: 1px solid #ddd;">Description</th>
-                <th style="text-align: right; padding: 10px; border: 1px solid #ddd;">Amount</th>
+            <tr style="background: #f4f6f5; color: #1a3a36;">
+                <th style="text-align: left; padding: 12px; border: 1px solid #ddd; font-size: 0.85rem; text-transform: uppercase;">Description</th>
+                <th style="text-align: right; padding: 12px; border: 1px solid #ddd; font-size: 0.85rem; text-transform: uppercase; width: 150px;">Amount</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td style="padding: 12px; border: 1px solid #ddd;">
-                    <strong id="pService"></strong><br>
-                    <span style="font-size: 0.75rem; color: #555;">Registered Massage Therapy Treatment</span>
+                <td style="padding: 15px; border: 1px solid #ddd; vertical-align: middle;">
+                    <strong id="pService" style="font-size: 1rem;"></strong><br>
+                    <span style="font-size: 0.75rem; color: #666;">Registered Massage Therapy Treatment</span>
                 </td>
-                <td style="padding: 12px; border: 1px solid #ddd; text-align: right; vertical-align: top;" id="pSub"></td>
+                <td style="padding: 15px; border: 1px solid #ddd; text-align: right; vertical-align: middle; white-space: nowrap; font-weight: 600;" id="pSub"></td>
             </tr>
             <tr>
-                <td style="padding: 8px 12px; text-align: right; border: 1px solid #ddd; font-size: 0.85rem;">GST (5%)</td>
-                <td style="padding: 8px 12px; text-align: right; border: 1px solid #ddd; font-size: 0.85rem;" id="pTax"></td>
+                <td style="padding: 10px 15px; text-align: right; border: 1px solid #ddd; font-size: 0.9rem;">GST (5%)</td>
+                <td style="padding: 10px 15px; text-align: right; border: 1px solid #ddd; font-size: 0.9rem; white-space: nowrap;" id="pTax"></td>
             </tr>
-            <tr style="color: #777;">
-                <td style="padding: 8px 12px; text-align: right; border: 1px solid #ddd; font-size: 0.85rem;">Insurance Benefit Applied</td>
-                <td style="padding: 8px 12px; text-align: right; border: 1px solid #ddd; font-size: 0.85rem;" id="pIns"></td>
+            <tr>
+                <td style="padding: 10px 15px; text-align: right; border: 1px solid #ddd; font-size: 0.9rem; color: #777;">Insurance Benefit Applied</td>
+                <td style="padding: 10px 15px; text-align: right; border: 1px solid #ddd; font-size: 0.9rem; color: #777; white-space: nowrap;" id="pIns"></td>
             </tr>
-            <tr style="background: #1a3a36; color: white; font-weight: bold;">
-                <td style="padding: 12px; text-align: right; border: 1px solid #1a3a36;">Total Balance Paid</td>
-                <td style="padding: 12px; text-align: right; border: 1px solid #1a3a36;" id="pTotal"></td>
+            <tr style="background: #1a3a36; color: white;">
+                <td style="padding: 15px; text-align: right; border: 1px solid #1a3a36; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Total Balance Paid</td>
+                <td style="padding: 15px; text-align: right; border: 1px solid #1a3a36; font-size: 1.2rem; font-weight: 600; white-space: nowrap;" id="pTotal"></td>
             </tr>
         </tbody>
     </table>
 
-    <div style="margin-top: 30px; border-top: 1px solid #ddd; padding-top: 15px; font-family: 'Montserrat', sans-serif; font-size: 0.85rem;">
+    <div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; font-family: 'Montserrat', sans-serif; font-size: 0.85rem;">
         <div style="display: flex; justify-content: space-between; align-items: flex-end;">
-            <div>
+            <div style="line-height: 1.8;">
                 <p><strong>Practitioner:</strong> Getachew Addgeh, RMT</p>
                 <p><strong>RMT Registration #:</strong> [INSERT_RMT_NUMBER]</p>
                 <p><strong>GST Business #:</strong> [INSERT_GST_NUMBER]</p>
             </div>
-            <div style="text-align: center; width: 180px;">
-                <div style="border-bottom: 1px solid #000; height: 30px;"></div>
-                <p style="font-size: 0.65rem; margin-top: 5px; text-transform: uppercase;">Authorized Signature</p>
+            <div style="text-align: center; width: 220px;">
+                <div style="border-bottom: 1px solid #000; height: 40px; margin-bottom: 8px;"></div>
+                <p style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: #444;">Authorized Signature</p>
             </div>
         </div>
-        <p style="text-align: center; margin-top: 40px; font-size: 0.7rem; color: #666; font-style: italic;">
+        <p style="text-align: center; margin-top: 60px; font-size: 0.75rem; color: #888; font-style: italic; border-top: 1px solid #fafafa; padding-top: 15px;">
             Thank you for choosing Wegeshaw. This is an official receipt for insurance and tax purposes.
         </p>
     </div>
@@ -526,7 +528,6 @@
         goToStep(3);
     }
 
-    // Admin & Receipt Logic
     function unlockAdmin() {
         const pin = prompt("Enter Practitioner PIN:");
         if (pin === "1234") {
