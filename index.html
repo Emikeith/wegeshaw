@@ -116,6 +116,17 @@
             transition: 0.3s; cursor: pointer; border: none;
         }
 
+        /* Insurance Section Styles */
+        .insurance-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px; margin-top: 40px; text-align: center;
+        }
+        .insurance-tag {
+            padding: 15px; background: white; border: 1px solid #f0f0f0;
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--primary); border-radius: 2px;
+        }
+
         /* BOOKING MODAL STYLES */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -249,48 +260,53 @@
         <div class="price-row"><div><h4>Full Swedish</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
         <div class="price-row"><div><h4>Extended Swedish</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
     </div>
-
     <div id="relax" class="panel">
         <div class="price-row"><div><h4>Light Reset</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
         <div class="price-row"><div><h4>Total Sanctuary</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
-        <div class="price-row"><div><h4>Ultimate Drift</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
     </div>
-
     <div id="thera" class="panel">
         <div class="price-row"><div><h4>Focused Therapy</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
         <div class="price-row"><div><h4>Clinical Reset</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
-        <div class="price-row"><div><h4>Complete Restoration</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
     </div>
-
     <div id="deep" class="panel">
         <div class="price-row"><div><h4>Direct Release</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
         <div class="price-row"><div><h4>Core Deep Tissue</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
-        <div class="price-row"><div><h4>Intensive Alignment</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
     </div>
-
     <div id="head" class="panel">
         <div class="price-row"><div><h4>Scalp Awakening</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
         <div class="price-row"><div><h4>Ritual Focus</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
-        <div class="price-row"><div><h4>Total Zen</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
     </div>
-
     <div id="pre" class="panel">
         <div class="price-row"><div><h4>Motherhood Glow</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
         <div class="price-row"><div><h4>Nurturing Care</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
-        <div class="price-row"><div><h4>The Sanctuary</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
     </div>
 
     <div class="ritual-cta">
         <h3 style="font-family:'Cormorant Garamond'; font-size:1.8rem; font-style:italic;">Ready to begin your restoration?</h3>
-        <p style="font-size:0.8rem; margin-top:10px; opacity:0.8;">Secure your preferred time with Getachew today.</p>
         <button class="cta-btn" onclick="openBooking()">Choose Your Ritual</button>
+    </div>
+</section>
+
+<section id="insurance" class="reveal">
+    <div class="section-header"><span>Direct Billing</span><h2>Insurance Coverage</h2></div>
+    <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic;">
+            We accept coverage from all major insurance providers. For your convenience, we offer direct billing to the following companies and many others:
+        </p>
+        <div class="insurance-grid">
+            <div class="insurance-tag">Manitoba Blue Cross</div>
+            <div class="insurance-tag">Canada Life</div>
+            <div class="insurance-tag">Sun Life</div>
+            <div class="insurance-tag">Manulife</div>
+            <div class="insurance-tag">GreenShield</div>
+            <div class="insurance-tag">+ All Major Carriers</div>
+        </div>
     </div>
 </section>
 
 <div class="modal-overlay" id="bookingModal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeBooking()">&times;</span>
-        
         <div class="booking-step active" id="step1">
             <h2 style="font-family:'Cormorant Garamond'; margin-bottom:20px;">Select a Ritual</h2>
             <button class="booking-option" onclick="selectType('Swedish')">Swedish</button>
@@ -300,7 +316,6 @@
             <button class="booking-option" onclick="selectType('Indian Head')">Indian Head Massage</button>
             <button class="booking-option" onclick="selectType('Prenatal')">Prenatal</button>
         </div>
-
         <div class="booking-step" id="step2">
             <h2 style="font-family:'Cormorant Garamond'; margin-bottom:10px;" id="selectedMassageTitle">Massage</h2>
             <p style="font-size:0.8rem; margin-bottom:20px;">Choose your duration</p>
@@ -309,7 +324,6 @@
             <button class="booking-option" onclick="selectDuration('90 Minutes', '$120')">90 Minutes — $120</button>
             <span class="back-link" onclick="goToStep(1)">Back to services</span>
         </div>
-
         <div class="booking-step" id="step3">
             <h2 style="font-family:'Cormorant Garamond';" id="finalTitle">Your Selection</h2>
             <div class="final-price-box">
@@ -329,14 +343,6 @@
         <div class="testimonial-slide active">
             <span class="t-quote">"The level of care is unmatched. As an athlete, I appreciate the deep anatomical understanding and precise touch."</span>
             <span class="t-author">— Sarah J.</span>
-        </div>
-        <div class="testimonial-slide">
-            <span class="t-quote">"True magic. I left my 90-minute session feeling completely weightless. Best massage in Winnipeg."</span>
-            <span class="t-author">— Mark R.</span>
-        </div>
-        <div class="testimonial-slide">
-            <span class="t-quote">"Professional, welcoming, and effective. The intuitive sense of pressure was exactly what I needed."</span>
-            <span class="t-author">— Elena K.</span>
         </div>
     </div>
 </section>
@@ -366,14 +372,11 @@
     const dots = document.querySelectorAll('.dot');
     function updateCarousel() {
         slides.forEach((s, i) => { s.classList.toggle('active', i === currentSlide); dots[i].classList.toggle('active', i === currentSlide); });
-        resetTimer();
     }
     function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; updateCarousel(); }
     function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; updateCarousel(); }
     function goToSlide(index) { currentSlide = index; updateCarousel(); }
-
-    let timer = setInterval(nextSlide, 7000);
-    function resetTimer() { clearInterval(timer); timer = setInterval(nextSlide, 7000); }
+    setInterval(nextSlide, 7000);
 
     function showTab(e, name) {
         document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
@@ -399,16 +402,6 @@
         document.getElementById('finalDetails').innerText = dur;
         document.getElementById('finalPrice').innerText = price;
         goToStep(3);
-    }
-
-    let tSlide = 0;
-    const tSlides = document.querySelectorAll('.testimonial-slide');
-    if (tSlides.length > 0) {
-        setInterval(() => {
-            tSlides[tSlide].classList.remove('active');
-            tSlide = (tSlide + 1) % tSlides.length;
-            tSlides[tSlide].classList.add('active');
-        }, 5000);
     }
 </script>
 
