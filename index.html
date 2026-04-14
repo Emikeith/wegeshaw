@@ -23,7 +23,6 @@
         html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
         body { font-family: 'Montserrat', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; width: 100%; }
 
-        /* Animation System */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); will-change: transform, opacity; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         
@@ -177,20 +176,24 @@
         .hours-row { display: flex; justify-content: space-between; max-width: 300px; margin: 10px auto; font-size: 0.85rem; opacity: 0.7; }
         .admin-link { margin-top: 25px; display: inline-block; font-size: 0.6rem; color: rgba(255,255,255,0.3); text-decoration: none; cursor: pointer; letter-spacing: 1px; }
 
-        /* PRINT STYLES - FIXED ROW ALIGNMENT */
+        /* PRINT STYLES - FORCED ONE PAGE */
         @media print {
-            @page { margin: 1cm; }
+            @page { margin: 0.5cm; size: auto; }
             body * { visibility: hidden; }
+            html, body { height: 100%; overflow: hidden; }
             #printableReceipt, #printableReceipt * { visibility: visible; }
             #printableReceipt { 
                 position: absolute; left: 0; top: 0; width: 100%; 
                 display: block !important;
                 background: white !important;
+                padding: 20px !important;
+                max-height: 100vh;
+                overflow: hidden;
             }
         }
         #printableReceipt { display: none; padding: 40px; background: white; color: #000; }
-        #printableReceipt table { width: 100%; border-collapse: collapse; margin: 20px 0; table-layout: fixed; }
-        #printableReceipt th, #printableReceipt td { border: 1px solid #eee; padding: 12px; text-align: left; }
+        #printableReceipt table { width: 100%; border-collapse: collapse; margin: 15px 0; table-layout: fixed; }
+        #printableReceipt th, #printableReceipt td { border: 1px solid #eee; padding: 10px; text-align: left; }
         #printableReceipt .price-col { text-align: right; width: 120px; white-space: nowrap; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -360,16 +363,17 @@
 </section>
 
 <div id="printableReceipt">
-    <div style="text-align: center; border-bottom: 2px solid #1a3a36; padding-bottom: 15px; margin-bottom: 30px;">
-        <h1 style="font-size: 2.2rem; margin: 0; color: #1a3a36; font-family: 'Cormorant Garamond', serif; letter-spacing: 2px;">WEGESHAW</h1>
-        <p style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 3px; font-family: 'Montserrat';">Magic Therapy & Wellness</p>
-        <p style="font-size: 0.8rem; margin-top: 10px; font-family: 'Montserrat';">Winnipeg, MB | 431.887.3344 | info@wegeshaw.com</p>
+    <div style="text-align: center; border-bottom: 2px solid #1a3a36; padding-bottom: 10px; margin-bottom: 20px;">
+        <h1 style="font-size: 2rem; margin: 0; color: #1a3a36; font-family: 'Cormorant Garamond', serif; letter-spacing: 2px;">WEGESHAW</h1>
+        <p style="text-transform: uppercase; font-size: 0.65rem; letter-spacing: 3px; font-family: 'Montserrat';">Magic Therapy & Wellness</p>
+        <p style="font-size: 0.75rem; margin-top: 5px; font-family: 'Montserrat';">648 Panet Rd. R2L 2E3, Winnipeg, MB</p>
+        <p style="font-size: 0.75rem; font-family: 'Montserrat';">431.887.3344 | info@wegeshaw.com</p>
     </div>
 
-    <div style="display: flex; justify-content: space-between; margin-bottom: 30px; font-family: 'Montserrat'; font-size: 0.85rem;">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-family: 'Montserrat'; font-size: 0.8rem;">
         <div>
             <p style="font-weight: 600; color: #888;">RECEIPT TO:</p>
-            <p id="pName" style="font-size: 1.1rem; font-weight: 600; margin-top: 4px; color: #1a3a36;"></p>
+            <p id="pName" style="font-size: 1rem; font-weight: 600; margin-top: 2px; color: #1a3a36;"></p>
         </div>
         <div style="text-align: right;">
             <p><strong>RECEIPT NO:</strong> <span id="pNumber"></span></p>
@@ -380,15 +384,15 @@
     <table>
         <thead>
             <tr style="background: #f8f8f8;">
-                <th style="font-family: 'Montserrat'; font-size: 0.75rem; text-transform: uppercase;">Description</th>
-                <th class="price-col" style="font-family: 'Montserrat'; font-size: 0.75rem; text-transform: uppercase;">Amount</th>
+                <th style="font-family: 'Montserrat'; font-size: 0.7rem; text-transform: uppercase;">Description</th>
+                <th class="price-col" style="font-family: 'Montserrat'; font-size: 0.7rem; text-transform: uppercase;">Amount</th>
             </tr>
         </thead>
-        <tbody style="font-family: 'Montserrat'; font-size: 0.9rem;">
+        <tbody style="font-family: 'Montserrat'; font-size: 0.85rem;">
             <tr>
                 <td>
-                    <strong id="pService" style="font-size: 1rem;"></strong><br>
-                    <span style="font-size: 0.75rem; color: #666;">Registered Massage Therapy Treatment</span>
+                    <strong id="pService" style="font-size: 0.9rem;"></strong><br>
+                    <span style="font-size: 0.7rem; color: #666;">Registered Massage Therapy Treatment</span>
                 </td>
                 <td id="pSub" class="price-col" style="font-weight: 600;"></td>
             </tr>
@@ -402,21 +406,22 @@
             </tr>
             <tr style="background: #1a3a36; color: white; font-weight: 600;">
                 <td style="text-align: right; text-transform: uppercase; letter-spacing: 1px; border: none;">Total Balance Paid</td>
-                <td id="pTotal" class="price-col" style="font-size: 1.1rem; border: none;"></td>
+                <td id="pTotal" class="price-col" style="font-size: 1rem; border: none;"></td>
             </tr>
         </tbody>
     </table>
 
-    <div style="margin-top: 50px; border-top: 1px solid #eee; padding-top: 25px; font-family: 'Montserrat'; font-size: 0.8rem;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-end;">
-            <div style="line-height: 1.8;">
+    <div style="margin-top: 30px; font-family: 'Montserrat'; font-size: 0.75rem;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="line-height: 1.6;">
                 <p><strong>Practitioner:</strong> Getachew Addgeh, RMT</p>
                 <p><strong>RMT Registration #:</strong> [INSERT_RMT_NUMBER]</p>
                 <p><strong>GST Business #:</strong> [INSERT_GST_NUMBER]</p>
             </div>
-            <div style="text-align: center; width: 200px;">
-                <div style="border-bottom: 1px solid #000; height: 40px; margin-bottom: 5px;"></div>
-                <p style="font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px;">Authorized Signature</p>
+            <div style="text-align: right;">
+                <p style="font-family: 'Cormorant Garamond'; font-style: italic; font-size: 1.1rem; color: var(--primary);">
+                    Thank you for your service and see you soon!
+                </p>
             </div>
         </div>
     </div>
@@ -466,7 +471,8 @@
 </section>
 
 <footer>
-    <span class="nav-logo" style="color:white; font-size:2rem; margin-bottom:20px; display:block;">Wegeshaw</span>
+    <span class="nav-logo" style="color:white; font-size:2rem; margin-bottom:10px; display:block;">Wegeshaw</span>
+    <p style="color:rgba(255,255,255,0.7); font-size:0.8rem; margin-bottom:15px;">648 Panet Rd. R2L 2E3, Winnipeg, MB</p>
     <a href="tel:+14318873344" style="color:white; text-decoration:none; font-size:1.8rem; font-family:'Cormorant Garamond';">431.887.3344</a>
     <div class="hours-list" style="margin-top:30px;">
         <div class="hours-row"><span>Mon – Fri</span><span>9:00 AM – 7:00 PM</span></div>
