@@ -23,14 +23,10 @@
         html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
         body { font-family: 'Montserrat', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; width: 100%; }
 
-        /* Animation Classes */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); will-change: transform, opacity; }
         .reveal.active { opacity: 1; transform: translateY(0); }
         
         section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; }
-        .section-header { margin-bottom: 50px; }
-        .section-header span { text-transform: uppercase; letter-spacing: 4px; font-size: 0.7rem; color: var(--accent); font-weight: 600; display: block; margin-bottom: 10px; }
-        .section-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 400; color: var(--primary); }
 
         /* Navigation */
         nav {
@@ -47,7 +43,6 @@
         .hero-carousel {
             height: 90vh; width: 100%; position: relative;
             background: var(--primary); overflow: hidden; color: white; text-align: center;
-            margin-top: var(--nav-height);
         }
         .slide {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -73,96 +68,140 @@
         .arrow-left { left: 20px; }
         .arrow-right { right: 20px; }
 
-        /* Carousel Content Styling */
-        .slide-content { position: relative; z-index: 2; max-width: 700px; }
-        .slide h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 10vw, 5.5rem); font-style: italic; line-height: 1.1; margin-bottom: 20px; }
-        .slide p { font-size: 1.1rem; opacity: 0.9; max-width: 500px; margin: 0 auto; }
-
-        /* Carousel Dots */
-        .carousel-dots { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 20; }
-        .dot { width: 8px; height: 8px; border: 1px solid white; border-radius: 50%; cursor: pointer; opacity: 0.4; transition: 0.3s; }
-        .dot.active { background: white; transform: scale(1.3); opacity: 1; }
-
-        /* Service Backgrounds */
+        /* Carousel Images */
         .slide-main { background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=2070'); }
         .slide-swedish { background-image: url('https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&q=80&w=2070'); }
         .slide-deep { background-image: url('https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&q=80&w=2070'); }
         .slide-head { background-image: url('https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=2070'); }
         .slide-prenatal { background-image: url('https://images.unsplash.com/photo-1519415387722-a1c3bbef716c?auto=format&fit=crop&q=80&w=2070'); }
 
-        /* Bio Section */
-        .bio-box { background: white; padding: 60px; border-radius: 2px; box-shadow: 0 20px 60px rgba(0,0,0,0.03); border-left: 4px solid var(--accent); }
-        .bio-text { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; line-height: 1.4; color: var(--primary); font-style: italic; margin-bottom: 30px; }
+        .slide-content { position: relative; z-index: 2; max-width: 700px; }
+        .slide h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 10vw, 5.5rem); font-style: italic; line-height: 1.1; margin-bottom: 20px; }
 
-        /* Price Menu Tabs */
-        .tabs-list { display: flex; justify-content: flex-start; gap: 20px; margin-bottom: 40px; overflow-x: auto; padding-bottom: 10px; border-bottom: 1px solid #eee; }
-        .tab-trigger { background: none; border: none; font-family: 'Montserrat', sans-serif; text-transform: uppercase; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); cursor: pointer; white-space: nowrap; padding-bottom: 15px; transition: 0.3s; position: relative; }
-        .tab-trigger.active { color: var(--primary); }
-        .tab-trigger.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--primary); }
+        .carousel-dots { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 20; }
+        .dot { width: 8px; height: 8px; border: 1px solid white; border-radius: 50%; cursor: pointer; opacity: 0.4; transition: 0.3s; }
+        .dot.active { background: white; transform: scale(1.3); opacity: 1; }
+
+        /* Sections */
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header span { color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; font-weight: 600; }
+        .section-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 6vw, 3.5rem); color: var(--primary); margin-top: 10px; }
+
+        .bio-box {
+            background: white; padding: 60px 40px; border: 1px solid #f0f0f0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.03); max-width: 900px; margin: 0 auto;
+            position: relative; border-radius: 4px;
+        }
+        .bio-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem, 3vw, 1.5rem); line-height: 1.8; color: var(--text); font-style: italic; margin-bottom: 30px; }
+
+        .tabs-list { display: flex; justify-content: flex-start; gap: 20px; margin-bottom: 40px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+        .tabs-list::-webkit-scrollbar { display: none; }
+        .tab-trigger { background: none; border: none; font-family: 'Montserrat', sans-serif; text-transform: uppercase; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); cursor: pointer; white-space: nowrap; padding-bottom: 10px; border-bottom: 2px solid transparent; transition: 0.3s; }
+        .tab-trigger.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
 
         .panel { display: none; }
         .panel.active { display: block; animation: fadeIn 0.6s ease; }
-        .price-row { display: flex; justify-content: space-between; align-items: center; padding: 25px 0; border-bottom: 1px solid #f0f0f0; }
-        .price-val { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--accent); }
+        .price-row { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid #f0f0f0; }
+        .price-val { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--accent); }
 
-        /* Modal / Booking */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(26, 58, 54, 0.95); backdrop-filter: blur(10px); z-index: 2000; display: none; align-items: center; justify-content: center; }
-        .modal-overlay.active { display: flex; }
-        .modal-content { background: var(--bg); width: 90%; max-width: 450px; padding: 50px 30px; border-radius: 2px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
-        .cta-btn { display: block; width: 100%; background: var(--accent); color: white; padding: 18px; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; font-size: 0.8rem; margin-top: 20px; border: none; cursor: pointer; transition: 0.3s; }
-        .cta-btn:hover { background: #a68d6d; }
+        .ritual-cta {
+            margin-top: 50px; text-align: center; padding: 40px;
+            background: var(--primary); color: white; border-radius: 4px;
+        }
+        .cta-btn {
+            display: inline-block; background: var(--accent); color: white;
+            padding: 15px 40px; text-decoration: none; text-transform: uppercase;
+            letter-spacing: 2px; font-weight: 600; font-size: 0.8rem; margin-top: 20px;
+            transition: 0.3s; cursor: pointer; border: none;
+        }
 
-        /* Admin Portal & Form */
-        #admin-portal { display: none; background: #f4f6f5; padding: 60px 20px; border-top: 4px solid var(--accent); }
-        .admin-form { background: white; padding: 40px; max-width: 550px; margin: 0 auto; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.06); }
-        .admin-form h2 { margin-bottom: 25px; font-family: 'Cormorant Garamond', serif; font-size: 2rem; }
-        .admin-input { width: 100%; padding: 14px; margin: 10px 0 25px 0; border: 1px solid #e0e0e0; border-radius: 2px; font-family: inherit; font-size: 0.9rem; }
-        .admin-input:focus { border-color: var(--primary); outline: none; }
+        /* Insurance Section Styles */
+        .insurance-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px; margin-top: 40px; text-align: center;
+        }
+        .insurance-tag {
+            padding: 15px; background: white; border: 1px solid #f0f0f0;
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--primary); border-radius: 2px;
+        }
+
+        /* BOOKING MODAL STYLES */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26, 58, 54, 0.95); backdrop-filter: blur(10px);
+            z-index: 2000; display: none; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.4s;
+        }
+        .modal-overlay.active { display: flex; opacity: 1; }
+
+        .modal-content {
+            background: var(--bg); width: 95%; max-width: 500px;
+            padding: 40px 30px; position: relative; border-radius: 2px;
+            text-align: center; max-height: 90vh; overflow-y: auto;
+        }
+        .close-modal { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--primary); }
+
+        .booking-step { display: none; animation: fadeIn 0.4s ease-out; }
+        .booking-step.active { display: block; }
+
+        .booking-option {
+            display: block; width: 100%; padding: 15px; margin-bottom: 10px;
+            border: 1px solid #ddd; background: white; cursor: pointer;
+            font-family: 'Montserrat', sans-serif; text-transform: uppercase;
+            font-size: 0.8rem; font-weight: 600; transition: 0.3s;
+        }
+        .booking-option:hover { border-color: var(--accent); color: var(--accent); }
+
+        .back-link { display: block; margin-top: 20px; color: var(--text-muted); font-size: 0.7rem; text-decoration: underline; cursor: pointer; }
+
+        .final-price-box { margin: 20px 0; padding: 20px; background: #f0f3f2; }
+        .final-price-box h2 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--accent); }
+
+        /* Testimonials */
+        .testimonials-section { background: #f8faf9; padding: 120px 20px; }
+        .testimonial-container { max-width: 800px; margin: 0 auto; position: relative; height: 250px; text-align: center; }
+        .testimonial-slide { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; transition: 1s ease; visibility: hidden; }
+        .testimonial-slide.active { opacity: 1; visibility: visible; }
+        .t-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 4vw, 1.8rem); font-style: italic; color: var(--primary); margin-bottom: 25px; display: block; }
+
+        /* Admin Portal Styles */
+        #admin-portal { display: none; background: #f0f2f1; padding: 40px 20px; border-top: 3px solid var(--accent); }
+        .admin-form { background: white; padding: 30px; max-width: 500px; margin: 0 auto; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .admin-form label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--primary); }
+        .admin-input { width: 100%; padding: 12px; margin: 8px 0 20px 0; border: 1px solid #ddd; border-radius: 2px; font-family: inherit; }
 
         /* Footer */
-        footer { background: var(--primary); color: white; padding: 100px 20px; text-align: center; }
-        .admin-link { margin-top: 40px; display: inline-block; font-size: 0.7rem; opacity: 0.3; cursor: pointer; text-decoration: underline; }
+        footer { background: var(--primary); color: white; padding: 80px 20px; text-align: center; }
+        .hours-row { display: flex; justify-content: space-between; max-width: 300px; margin: 10px auto; font-size: 0.85rem; opacity: 0.7; }
+        .admin-link { margin-top: 25px; display: inline-block; font-size: 0.6rem; color: rgba(255,255,255,0.3); text-decoration: none; cursor: pointer; letter-spacing: 1px; }
 
-        /* --- PRINTABLE RECEIPT STYLING --- */
-        #printableReceipt { 
-            display: none; 
-            width: 100%; 
-            max-width: 800px; 
-            margin: auto; 
-            padding: 50px; 
-            background: white; 
-            color: #000;
-            border: 1px solid #eee;
-            position: relative;
-        }
-
-        #printableReceipt table { width: 100%; border-collapse: collapse; margin: 40px 0; }
-        #printableReceipt th { background: #1a3a36; color: white; text-transform: uppercase; font-size: 0.75rem; padding: 15px; letter-spacing: 1px; text-align: left; }
-        #printableReceipt td { border-bottom: 1px solid #eee; padding: 20px 15px; font-size: 0.95rem; }
-
-        /* THE PRINT ENGINE FIX */
+        /* PRINT STYLES - FORCED ONE PAGE */
         @media print {
+            @page { margin: 0.5cm; size: auto; }
             body * { visibility: hidden; }
-            #printableReceipt, #printableReceipt * { visibility: visible !important; }
+            html, body { height: 100%; overflow: hidden; }
+            #printableReceipt, #printableReceipt * { visibility: visible; }
             #printableReceipt { 
-                display: block !important; 
                 position: absolute; left: 0; top: 0; width: 100%; 
-                padding: 40px !important; margin: 0 !important;
-                min-height: 100vh;
+                display: block !important;
                 background: white !important;
+                padding: 30px !important;
+                max-height: 100vh;
+                overflow: hidden;
             }
-            @page { margin: 1.5cm; }
-            #admin-portal, nav, .hero-carousel, section, footer { display: none !important; }
         }
+        #printableReceipt { display: none; padding: 40px; background: white; color: #000; }
+        #printableReceipt table { width: 100%; border-collapse: collapse; margin: 15px 0; table-layout: fixed; }
+        #printableReceipt th, #printableReceipt td { border: 1px solid #eee; padding: 10px; text-align: left; }
+        #printableReceipt .price-col { text-align: right; width: 120px; white-space: nowrap; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Mobile Adjustments */
         @media (max-width: 768px) {
-            section { padding: 60px 20px; }
-            .bio-box { padding: 30px; }
-            .bio-text { font-size: 1.3rem; }
-            .nav-arrow { width: 40px; height: 40px; }
+            .nav-arrow { width: 40px; height: 40px; font-size: 1rem; }
+            .arrow-left { left: 10px; }
+            .arrow-right { right: 10px; }
         }
     </style>
 </head>
@@ -179,7 +218,7 @@
 
     <div class="slide slide-main active">
         <div class="slide-content">
-            <p style="letter-spacing:5px; text-transform:uppercase; font-size:0.7rem; color:var(--accent); margin-bottom: 10px;">Winnipeg, MB</p>
+            <p style="letter-spacing:5px; text-transform:uppercase; font-size:0.7rem; color:var(--accent);">Winnipeg, MB</p>
             <h1>Wegeshaw Magic Therapy.</h1>
             <p>Experience high-palpation bodywork tailored to your physical recovery.</p>
         </div>
@@ -219,27 +258,20 @@
 </div>
 
 <section id="therapist" class="reveal">
-    <div class="section-header">
-        <span>The Practitioner</span>
-        <h2>The Hands Behind the Magic</h2>
-    </div>
+    <div class="section-header"><span>The Practitioner</span><h2>The Hands Behind the Magic</h2></div>
     <div class="bio-box">
         <div class="bio-text">
-            “I chose to become a massage therapist because it allows me to fulfill my innate desire to help others. As a visually impaired person, I have a heightened sense of touch, which enables me to connect with my clients on a profound level, truly understanding their physical needs through my hands.”
+            “I chose to become a massage therapist because it allows me to fulfill my innate desire to help others. As a visually impaired person, I have a heightened sense of touch, which enables me to connect with my clients on a profound level... My visual impairment fades into the background as I focus entirely on providing the best possible care for my clients.”
         </div>
         <div style="text-align:right;">
-            <h4 style="font-weight: 600; font-size: 1.1rem;">Getachew Addgeh</h4>
-            <p style="font-size:0.75rem; color:var(--accent); font-weight:600; text-transform: uppercase; letter-spacing: 1px;">Registered Massage Therapist</p>
+            <h4>Getachew Addgeh</h4>
+            <p style="font-size:0.75rem; color:var(--accent); font-weight:600;">Registered Massage Therapist</p>
         </div>
     </div>
 </section>
 
 <section id="rituals" class="reveal">
-    <div class="section-header">
-        <span>Price Menu</span>
-        <h2>The Rituals</h2>
-    </div>
-    
+    <div class="section-header"><span>Price Menu</span><h2>The Rituals</h2></div>
     <div class="tabs-list">
         <button class="tab-trigger active" onclick="showTab(event, 'swedish')">Swedish</button>
         <button class="tab-trigger" onclick="showTab(event, 'relax')">Relaxation</button>
@@ -250,237 +282,284 @@
     </div>
 
     <div id="swedish" class="panel active">
+        <div class="price-row"><div><h4>Express Swedish</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
         <div class="price-row"><div><h4>Full Swedish</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
-        <div class="price-row"><div><h4>Extended Session</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
+        <div class="price-row"><div><h4>Extended Swedish</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
     </div>
     <div id="relax" class="panel">
+        <div class="price-row"><div><h4>Light Reset</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
         <div class="price-row"><div><h4>Total Sanctuary</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
-        <div class="price-row"><div><h4>Total Sanctuary</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
     </div>
     <div id="thera" class="panel">
+        <div class="price-row"><div><h4>Focused Therapy</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
         <div class="price-row"><div><h4>Clinical Reset</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
-        <div class="price-row"><div><h4>Clinical Reset</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
     </div>
     <div id="deep" class="panel">
+        <div class="price-row"><div><h4>Direct Release</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
         <div class="price-row"><div><h4>Core Deep Tissue</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
-        <div class="price-row"><div><h4>Core Deep Tissue</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
     </div>
     <div id="head" class="panel">
-        <div class="price-row"><div><h4>Ritual Focus</h4><span>45 Minutes</span></div><div class="price-val">$65</div></div>
+        <div class="price-row"><div><h4>Scalp Awakening</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
         <div class="price-row"><div><h4>Ritual Focus</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
     </div>
     <div id="pre" class="panel">
+        <div class="price-row"><div><h4>Motherhood Glow</h4><span>30 Minutes</span></div><div class="price-val">$50</div></div>
         <div class="price-row"><div><h4>Nurturing Care</h4><span>60 Minutes</span></div><div class="price-val">$80</div></div>
-        <div class="price-row"><div><h4>Nurturing Care</h4><span>90 Minutes</span></div><div class="price-val">$120</div></div>
     </div>
 
-    <div style="margin-top: 50px; text-align: center; padding: 40px; background: var(--primary); color: white;">
-        <p style="font-style: italic; font-family: 'Cormorant Garamond'; font-size: 1.4rem;">Direct billing available for most major insurance providers.</p>
-        <button class="cta-btn" onclick="openBooking()" style="display: inline-block; width: auto; padding: 18px 50px;">Book a Session</button>
+    <div class="ritual-cta">
+        <h3 style="font-family:'Cormorant Garamond'; font-size:1.8rem; font-style:italic;">Ready to begin your restoration?</h3>
+        <button class="cta-btn" onclick="openBooking()">Choose Your Ritual</button>
+    </div>
+</section>
+
+<section id="insurance" class="reveal">
+    <div class="section-header"><span>Direct Billing</span><h2>Insurance Coverage</h2></div>
+    <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic;">
+            We accept coverage from all major insurance providers. For your convenience, we offer direct billing to the following companies and many others:
+        </p>
+        <div class="insurance-grid">
+            <div class="insurance-tag">Manitoba Blue Cross</div>
+            <div class="insurance-tag">Canada Life</div>
+            <div class="insurance-tag">Sun Life</div>
+            <div class="insurance-tag">Manulife</div>
+            <div class="insurance-tag">GreenShield</div>
+            <div class="insurance-tag">+ All Major Carriers</div>
+        </div>
     </div>
 </section>
 
 <section id="admin-portal">
     <div class="admin-form">
-        <h2>Receipt Generator</h2>
-        <div style="border-bottom: 1px solid #eee; margin-bottom: 25px;"></div>
+        <h2 style="font-family: 'Cormorant Garamond'; text-align: center; margin-bottom: 20px;">Receipt Generator</h2>
         
-        <label>Client Full Name</label>
-        <input type="text" id="admName" class="admin-input" placeholder="e.g. John Smith">
+        <label for="admName">Client Full Name</label>
+        <input type="text" id="admName" class="admin-input" placeholder="e.g. John Doe">
         
-        <label>Service Provided</label>
+        <label for="admService">Massage Type</label>
         <select id="admService" class="admin-input">
-            <option>Swedish Massage Therapy</option>
-            <option>Therapeutic & Deep Tissue</option>
-            <option>Relaxation Massage</option>
-            <option>Indian Head Massage</option>
-            <option>Prenatal Massage Therapy</option>
+            <option value="Swedish Massage">Swedish Massage</option>
+            <option value="Therapeutic & Deep Tissue">Therapeutic & Deep Tissue</option>
+            <option value="Indian Head Massage">Indian Head Massage</option>
+            <option value="Prenatal Massage">Prenatal Massage</option>
+            <option value="Relaxation Massage">Relaxation Massage</option>
         </select>
-        
-        <div style="display:flex; gap:20px;">
-            <div style="flex:1;">
-                <label>Base Price ($)</label>
+
+        <div style="display: flex; gap: 15px;">
+            <div style="flex: 1;">
+                <label for="admPrice">Price ($)</label>
                 <input type="number" id="admPrice" class="admin-input" value="80">
             </div>
-            <div style="flex:1;">
-                <label>Insurance Paid ($)</label>
+            <div style="flex: 1;">
+                <label for="admIns">Insurance ($)</label>
                 <input type="number" id="admIns" class="admin-input" value="0">
             </div>
         </div>
-        
-        <button class="cta-btn" onclick="generateAndPrint()">Generate PDF Receipt</button>
+
+        <button class="cta-btn" style="width: 100%; border-radius: 2px;" onclick="generateAndPrint()">Generate Receipt</button>
+        <button class="admin-link" style="color: #666; margin-top: 15px; background: none; border: none; width: 100%;" onclick="location.reload()">Lock Portal</button>
     </div>
 </section>
 
 <div id="printableReceipt">
-    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #1a3a36; padding-bottom: 25px; margin-bottom: 35px;">
-        <div style="display: flex; align-items: center; gap: 20px;">
-            <img src="https://img.icons8.com/ios-filled/100/1a3a36/massage.png" style="width: 55px; height: 55px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #1a3a36; padding-bottom: 15px; margin-bottom: 20px;">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <img src="https://img.icons8.com/ios-filled/100/1a3a36/massage.png" style="width: 50px; height: 50px;">
             <div>
-                <h1 style="font-family: 'Cormorant Garamond'; font-size: 2.2rem; letter-spacing: 3px; line-height: 1;">WEGESHAW</h1>
-                <p style="font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; color: #666;">Magic Therapy & Wellness</p>
+                <h1 style="font-size: 2.2rem; margin: 0; color: #1a3a36; font-family: 'Cormorant Garamond', serif; letter-spacing: 2px; line-height: 1;">WEGESHAW</h1>
+                <p style="text-transform: uppercase; font-size: 0.6rem; letter-spacing: 3px; font-family: 'Montserrat'; font-weight: 600;">Magic Therapy & Wellness</p>
             </div>
         </div>
-        <div style="text-align: right; font-size: 0.8rem; line-height: 1.5;">
+        <div style="text-align: right; font-family: 'Montserrat'; font-size: 0.7rem; line-height: 1.4;">
             <p><strong>648 Panet Rd.</strong></p>
             <p>Winnipeg, MB, R2L 2E3</p>
             <p>Ph: 431.887.3344</p>
         </div>
     </div>
 
-    <div style="display: flex; justify-content: space-between; margin-bottom: 40px;">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-family: 'Montserrat'; font-size: 0.8rem;">
         <div>
-            <p style="font-size: 0.75rem; color: #888; font-weight: 600; text-transform: uppercase; margin-bottom: 5px;">Billed To</p>
-            <p id="pName" style="font-size: 1.2rem; font-weight: 600; color: #1a3a36;"></p>
+            <p style="font-weight: 600; color: #888; font-size: 0.65rem; text-transform: uppercase;">Receipt To:</p>
+            <p id="pName" style="font-size: 1.1rem; font-weight: 600; margin-top: 2px; color: #1a3a36;"></p>
         </div>
         <div style="text-align: right;">
-            <p style="margin-bottom: 5px;"><strong style="color: #888; font-size: 0.75rem;">INVOICE NO:</strong> <span id="pNumber" style="font-weight: 600;"></span></p>
-            <p><strong style="color: #888; font-size: 0.75rem;">DATE:</strong> <span id="pDate" style="font-weight: 600;"></span></p>
+            <p><strong>RECEIPT NO:</strong> <span id="pNumber"></span></p>
+            <p><strong>DATE:</strong> <span id="pDate"></span></p>
         </div>
     </div>
 
     <table>
         <thead>
-            <tr>
-                <th style="width: 70%;">Service Description</th>
-                <th style="text-align: right;">Amount</th>
+            <tr style="background: #f8f8f8;">
+                <th style="font-family: 'Montserrat'; font-size: 0.7rem; text-transform: uppercase; padding: 12px;">Description</th>
+                <th class="price-col" style="font-family: 'Montserrat'; font-size: 0.7rem; text-transform: uppercase; padding: 12px;">Amount</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody style="font-family: 'Montserrat'; font-size: 0.85rem;">
             <tr>
-                <td>
-                    <strong id="pService" style="font-size: 1.1rem;"></strong><br>
-                    <span style="font-size: 0.8rem; color: #555;">Registered Massage Therapy (RMT) Session</span>
+                <td style="padding: 15px 12px;">
+                    <strong id="pService" style="font-size: 0.95rem;"></strong><br>
+                    <span style="font-size: 0.7rem; color: #666;">Registered Massage Therapy (RMT) Session</span>
                 </td>
-                <td id="pSub" style="text-align: right; font-weight: 600; font-size: 1.1rem;"></td>
+                <td id="pSub" class="price-col" style="font-weight: 600; padding: 15px 12px;"></td>
             </tr>
             <tr>
-                <td style="text-align: right; color: #888;">GST (5%)</td>
-                <td id="pTax" style="text-align: right; font-weight: 500;"></td>
+                <td style="text-align: right; padding: 10px 12px;">GST (5.0%)</td>
+                <td id="pTax" class="price-col" style="padding: 10px 12px;"></td>
             </tr>
             <tr>
-                <td style="text-align: right; color: #bda282;">Direct Insurance Billing Benefit</td>
-                <td id="pIns" style="text-align: right; color: #bda282; font-weight: 500;"></td>
+                <td style="text-align: right; color: #888; padding: 10px 12px;">Insurance Benefit Benefit Applied</td>
+                <td id="pIns" class="price-col" style="color: #888; padding: 10px 12px;"></td>
             </tr>
-            <tr style="background: #f9f9f9; font-weight: 700;">
-                <td style="text-align: right; border-bottom: 2px solid #1a3a36; padding: 25px 15px;">TOTAL AMOUNT PAID</td>
-                <td id="pTotal" style="text-align: right; font-size: 1.4rem; color: #1a3a36; border-bottom: 2px solid #1a3a36; padding: 25px 15px;"></td>
+            <tr style="background: #1a3a36; color: white; font-weight: 600;">
+                <td style="text-align: right; text-transform: uppercase; letter-spacing: 1px; border: none; padding: 15px 12px;">Total Paid (CAD)</td>
+                <td id="pTotal" class="price-col" style="font-size: 1.1rem; border: none; padding: 15px 12px;"></td>
             </tr>
         </tbody>
     </table>
 
-    <div style="margin-top: 60px; border-top: 1px solid #eee; padding-top: 30px; display: flex; justify-content: space-between; align-items: flex-start;">
-        <div style="font-size: 0.8rem; line-height: 1.8;">
-            <p><strong>Provider:</strong> Getachew Addgeh, RMT</p>
-            <p><strong>MTAM License:</strong> #23215</p>
-            <p><strong>GST Registration:</strong> #785119421 RT0001</p>
-        </div>
-        <div style="text-align: right;">
-            <p style="font-family: 'Cormorant Garamond'; font-style: italic; font-size: 1.2rem; color: #1a3a36;">"Restoration is not a luxury, it is a necessity."</p>
-            <p style="font-size: 0.7rem; color: #999; margin-top: 10px;">Electronic Receipt - No Signature Required</p>
+    <div style="margin-top: 40px; font-family: 'Montserrat'; font-size: 0.75rem; border-top: 1px solid #eee; padding-top: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="line-height: 1.8;">
+                <p><strong>Practitioner:</strong> Getachew Addgeh, RMT</p>
+                <p><strong>Provider Number (NHPC):</strong> 23215</p>
+                <p><strong>GST Business ID:</strong> 785119421 RT0001</p>
+            </div>
+            <div style="text-align: right;">
+                <p style="font-family: 'Cormorant Garamond'; font-style: italic; font-size: 1.2rem; color: #1a3a36;">
+                    Thank you for choosing Wegeshaw Magic Therapy.
+                </p>
+                <p style="font-size: 0.65rem; color: #999; margin-top: 8px;">Official Electronic Receipt - No signature required</p>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="modal-overlay" id="bookingModal">
     <div class="modal-content">
-        <h2 style="font-family:'Cormorant Garamond'; margin-bottom:25px; font-size: 2rem;">Secure Your Time</h2>
-        <p style="color: #666; margin-bottom: 30px;">Direct booking is currently handled via phone or text to ensure proper scheduling.</p>
-        <a href="tel:+14318873344" class="cta-btn">Call 431.887.3344</a>
-        <p style="margin-top:25px; font-size:0.75rem; color: #999; cursor:pointer; text-decoration: underline;" onclick="closeBooking()">Return to Site</p>
+        <span class="close-modal" onclick="closeBooking()">&times;</span>
+        <div class="booking-step active" id="step1">
+            <h2 style="font-family:'Cormorant Garamond'; margin-bottom:20px;">Select a Ritual</h2>
+            <button class="booking-option" onclick="selectType('Swedish')">Swedish</button>
+            <button class="booking-option" onclick="selectType('Relaxation')">Relaxation</button>
+            <button class="booking-option" onclick="selectType('Therapeutic')">Therapeutic</button>
+            <button class="booking-option" onclick="selectType('Deep Tissue')">Deep Tissue</button>
+            <button class="booking-option" onclick="selectType('Indian Head')">Indian Head Massage</button>
+            <button class="booking-option" onclick="selectType('Prenatal')">Prenatal</button>
+        </div>
+        <div class="booking-step" id="step2">
+            <h2 style="font-family:'Cormorant Garamond'; margin-bottom:10px;" id="selectedMassageTitle">Massage</h2>
+            <p style="font-size:0.8rem; margin-bottom:20px;">Choose your duration</p>
+            <button class="booking-option" onclick="selectDuration('30 Minutes', '$50')">30 Minutes — $50</button>
+            <button class="booking-option" onclick="selectDuration('60 Minutes', '$80')">60 Minutes — $80</button>
+            <button class="booking-option" onclick="selectDuration('90 Minutes', '$120')">90 Minutes — $120</button>
+            <span class="back-link" onclick="goToStep(1)">Back to services</span>
+        </div>
+        <div class="booking-step" id="step3">
+            <h2 style="font-family:'Cormorant Garamond';" id="finalTitle">Your Selection</h2>
+            <div class="final-price-box">
+                <p id="finalDetails">60 Minutes</p>
+                <h2 id="finalPrice">$80</h2>
+            </div>
+            <p style="font-size:0.8rem; margin-bottom:20px;">Call now to confirm your time with Getachew.</p>
+            <a href="tel:+14318873344" class="cta-btn" style="width:100%; text-align:center;">Call 431.887.3344</a>
+            <span class="back-link" onclick="goToStep(2)">Change duration</span>
+        </div>
     </div>
 </div>
 
-<footer>
-    <span class="nav-logo" style="color:white; font-size:2.5rem; margin-bottom:20px; display:block;">Wegeshaw</span>
-    <p style="color:rgba(255,255,255,0.6); font-size:0.9rem; max-width: 400px; margin: 0 auto 40px auto;">Specializing in clinical and relaxation massage therapy for the Winnipeg community.</p>
-    
-    <div style="font-size: 0.8rem; opacity: 0.8;">
-        <p>Monday — Friday: 9am - 7pm</p>
-        <p>Saturday: 10am - 4pm</p>
+<section class="testimonials-section reveal">
+    <div class="section-header"><span>Experiences</span><h2>Client Stories</h2></div>
+    <div class="testimonial-container">
+        <div class="testimonial-slide active">
+            <span class="t-quote">"The level of care is unmatched. As an athlete, I appreciate the deep anatomical understanding and precise touch."</span>
+            <span class="t-author">— Sarah J.</span>
+        </div>
     </div>
+</section>
 
-    <a class="admin-link" onclick="unlockAdmin()">Practitioner Portal</a>
+<footer>
+    <span class="nav-logo" style="color:white; font-size:2rem; margin-bottom:10px; display:block;">Wegeshaw</span>
+    <p style="color:rgba(255,255,255,0.7); font-size:0.8rem; margin-bottom:15px;">648 Panet Rd. R2L 2E3, Winnipeg, MB</p>
+    <a href="tel:+14318873344" style="color:white; text-decoration:none; font-size:1.8rem; font-family:'Cormorant Garamond';">431.887.3344</a>
+    <div class="hours-list" style="margin-top:30px;">
+        <div class="hours-row"><span>Mon – Fri</span><span>9:00 AM – 7:00 PM</span></div>
+        <div class="hours-row"><span>Saturday</span><span>9:00 AM – 5:00 PM</span></div>
+        <div class="hours-row"><span>Sunday</span><span>1:30 PM – 5:00 PM</span></div>
+    </div>
+    <p style="margin-top: 50px; font-size: 0.6rem; opacity: 0.4; letter-spacing: 2px;">© 2026 WEGESHAW MAGIC THERAPY | WINNIPEG, MB</p>
+    <a class="admin-link" onclick="unlockAdmin()">Practitioner Login</a>
 </footer>
 
 <script>
-    // Reveal animations on scroll
     function initReveal() {
-        const reveals = document.querySelectorAll('.reveal');
-        reveals.forEach(r => {
-            const windowHeight = window.innerHeight;
-            const elementTop = r.getBoundingClientRect().top;
-            if (elementTop < windowHeight - 100) {
-                r.classList.add('active');
-            }
+        document.querySelectorAll('.reveal').forEach(r => {
+            if (r.getBoundingClientRect().top < window.innerHeight * 0.9) r.classList.add('active');
         });
     }
     window.addEventListener('scroll', initReveal);
     window.addEventListener('load', initReveal);
 
-    // Carousel Logic
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
-
-    function showSlide(n) {
-        slides.forEach(s => s.classList.remove('active'));
-        dots.forEach(d => d.classList.remove('active'));
-        currentSlide = (n + slides.length) % slides.length;
-        slides[currentSlide].classList.add('active');
-        dots[currentSlide].classList.add('active');
+    function updateCarousel() {
+        slides.forEach((s, i) => { s.classList.toggle('active', i === currentSlide); dots[i].classList.toggle('active', i === currentSlide); });
     }
+    function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; updateCarousel(); }
+    function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; updateCarousel(); }
+    function goToSlide(index) { currentSlide = index; updateCarousel(); }
+    setInterval(nextSlide, 7000);
 
-    function nextSlide() { showSlide(currentSlide + 1); }
-    function prevSlide() { showSlide(currentSlide - 1); }
-    function goToSlide(n) { showSlide(n); }
-    setInterval(nextSlide, 8000);
-
-    // Tab Logic
-    function showTab(e, tabName) {
-        const panels = document.querySelectorAll('.panel');
-        const triggers = document.querySelectorAll('.tab-trigger');
-        panels.forEach(p => p.classList.remove('active'));
-        triggers.forEach(t => t.classList.remove('active'));
-        document.getElementById(tabName).classList.add('active');
+    function showTab(e, name) {
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-trigger').forEach(t => t.classList.remove('active'));
+        document.getElementById(name).classList.add('active');
         e.currentTarget.classList.add('active');
     }
 
-    // Modal Logic
-    function openBooking() { document.getElementById('bookingModal').classList.add('active'); }
+    let selectedMassage = "";
+    function openBooking() { document.getElementById('bookingModal').classList.add('active'); goToStep(1); }
     function closeBooking() { document.getElementById('bookingModal').classList.remove('active'); }
+    function goToStep(step) {
+        document.querySelectorAll('.booking-step').forEach(s => s.classList.remove('active'));
+        document.getElementById('step' + step).classList.add('active');
+    }
+    function selectType(type) {
+        selectedMassage = type;
+        document.getElementById('selectedMassageTitle').innerText = type;
+        goToStep(2);
+    }
+    function selectDuration(dur, price) {
+        document.getElementById('finalTitle').innerText = selectedMassage;
+        document.getElementById('finalDetails').innerText = dur;
+        document.getElementById('finalPrice').innerText = price;
+        goToStep(3);
+    }
 
-    // Admin Logic
     function unlockAdmin() {
-        const pin = prompt("Admin Access PIN:");
+        const pin = prompt("Enter Practitioner PIN:");
         if (pin === "1234") {
-            const portal = document.getElementById('admin-portal');
-            portal.style.display = 'block';
-            portal.scrollIntoView({ behavior: 'smooth' });
-        } else if (pin !== null) {
-            alert("Incorrect Access Code");
+            document.getElementById('admin-portal').style.display = 'block';
+            document.getElementById('admin-portal').scrollIntoView({ behavior: 'smooth' });
+        } else {
+            alert("Access Denied.");
         }
     }
 
-    // GENERATE AND PRINT LOGIC
     function generateAndPrint() {
         const name = document.getElementById('admName').value;
         const service = document.getElementById('admService').value;
         const price = parseFloat(document.getElementById('admPrice').value) || 0;
         const ins = parseFloat(document.getElementById('admIns').value) || 0;
         
-        if(!name || name.trim() === "") { 
-            alert("Please enter a client name."); 
-            return; 
-        }
+        if(!name) { alert("Please enter client name"); return; }
 
         const gst = price * 0.05;
         const total = (price + gst) - ins;
 
-        // Map Data to Receipt
-        document.getElementById('pDate').innerText = new Date().toLocaleDateString('en-CA', { 
-            year: 'numeric', month: 'long', day: 'numeric' 
-        });
+        document.getElementById('pDate').innerText = new Date().toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
         document.getElementById('pNumber').innerText = "WMT-" + Math.floor(100000 + Math.random() * 900000);
         document.getElementById('pName').innerText = name.toUpperCase();
         document.getElementById('pService').innerText = service;
@@ -489,15 +568,14 @@
         document.getElementById('pIns').innerText = "-$" + ins.toFixed(2);
         document.getElementById('pTotal').innerText = "$" + total.toFixed(2);
 
-        // Print Handling
+        // Show receipt then print
         const receipt = document.getElementById('printableReceipt');
         receipt.style.display = 'block';
-
-        // Brief delay to ensure the browser has rendered the values into the receipt
+        
         setTimeout(() => {
             window.print();
             receipt.style.display = 'none';
-        }, 350);
+        }, 300);
     }
 </script>
 
