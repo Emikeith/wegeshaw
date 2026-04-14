@@ -176,25 +176,29 @@
         .hours-row { display: flex; justify-content: space-between; max-width: 300px; margin: 10px auto; font-size: 0.85rem; opacity: 0.7; }
         .admin-link { margin-top: 25px; display: inline-block; font-size: 0.6rem; color: rgba(255,255,255,0.3); text-decoration: none; cursor: pointer; letter-spacing: 1px; }
 
-        /* PRINT STYLES - FORCED ONE PAGE */
+        /* PRINT STYLES - PROFESSIONAL RECEIPT */
         @media print {
-            @page { margin: 0.5cm; size: auto; }
+            @page { margin: 1cm; size: auto; }
             body * { visibility: hidden; }
-            html, body { height: 100%; overflow: hidden; }
+            html, body { height: 100%; overflow: hidden; background: white; }
             #printableReceipt, #printableReceipt * { visibility: visible; }
             #printableReceipt { 
                 position: absolute; left: 0; top: 0; width: 100%; 
                 display: block !important;
+                padding: 0 !important;
                 background: white !important;
-                padding: 20px !important;
-                max-height: 100vh;
-                overflow: hidden;
             }
         }
-        #printableReceipt { display: none; padding: 40px; background: white; color: #000; }
-        #printableReceipt table { width: 100%; border-collapse: collapse; margin: 15px 0; table-layout: fixed; }
-        #printableReceipt th, #printableReceipt td { border: 1px solid #eee; padding: 10px; text-align: left; }
-        #printableReceipt .price-col { text-align: right; width: 120px; white-space: nowrap; }
+
+        #printableReceipt { display: none; width: 100%; max-width: 800px; margin: auto; padding: 40px; background: white; border: 1px solid #eee; position: relative; }
+        #printableReceipt::before {
+            content: 'W'; font-family: 'Cormorant Garamond'; font-size: 300px; color: rgba(26,58,54,0.03);
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0;
+        }
+        #printableReceipt table { width: 100%; border-collapse: collapse; margin: 30px 0; position: relative; z-index: 1; }
+        #printableReceipt th { background: #1a3a36; color: white; text-transform: uppercase; font-size: 0.7rem; padding: 12px; letter-spacing: 1px; border: none; }
+        #printableReceipt td { border-bottom: 1px solid #eee; padding: 15px 12px; text-align: left; }
+        #printableReceipt .price-col { text-align: right; width: 150px; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -363,65 +367,76 @@
 </section>
 
 <div id="printableReceipt">
-    <div style="text-align: center; border-bottom: 2px solid #1a3a36; padding-bottom: 10px; margin-bottom: 20px;">
-        <h1 style="font-size: 2rem; margin: 0; color: #1a3a36; font-family: 'Cormorant Garamond', serif; letter-spacing: 2px;">WEGESHAW</h1>
-        <p style="text-transform: uppercase; font-size: 0.65rem; letter-spacing: 3px; font-family: 'Montserrat';">Magic Therapy & Wellness</p>
-        <p style="font-size: 0.75rem; margin-top: 5px; font-family: 'Montserrat';">648 Panet Rd. R2L 2E3, Winnipeg, MB</p>
-        <p style="font-size: 0.75rem; font-family: 'Montserrat';">431.887.3344 | wegeshawmagictherapy@gmail.com</p>
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #1a3a36; padding-bottom: 20px; margin-bottom: 30px;">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <img src="https://img.icons8.com/ios-filled/100/1a3a36/massage.png" alt="Logo" style="width: 60px; height: 60px;">
+            <div>
+                <h1 style="font-size: 2.2rem; margin: 0; color: #1a3a36; font-family: 'Cormorant Garamond', serif; letter-spacing: 2px; line-height: 1;">WEGESHAW</h1>
+                <p style="text-transform: uppercase; font-size: 0.65rem; letter-spacing: 3px; font-family: 'Montserrat'; font-weight: 600;">Magic Therapy & Wellness</p>
+            </div>
+        </div>
+        <div style="text-align: right; font-family: 'Montserrat'; font-size: 0.75rem; line-height: 1.5;">
+            <p>648 Panet Rd. R2L 2E3</p>
+            <p>Winnipeg, MB, Canada</p>
+            <p>431.887.3344</p>
+            <p>wegeshawmagictherapy@gmail.com</p>
+        </div>
     </div>
 
-    <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-family: 'Montserrat'; font-size: 0.8rem;">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 40px; font-family: 'Montserrat'; font-size: 0.8rem;">
         <div>
-            <p style="font-weight: 600; color: #888;">RECEIPT TO:</p>
-            <p id="pName" style="font-size: 1rem; font-weight: 600; margin-top: 2px; color: #1a3a36;"></p>
+            <p style="font-weight: 600; color: #888; margin-bottom: 5px;">BILL TO</p>
+            <p id="pName" style="font-size: 1.1rem; font-weight: 600; color: #1a3a36;"></p>
+            <p style="color: #666; margin-top: 5px;">RMT Professional Service</p>
         </div>
         <div style="text-align: right;">
-            <p><strong>RECEIPT NO:</strong> <span id="pNumber"></span></p>
-            <p><strong>DATE:</strong> <span id="pDate"></span></p>
+            <p style="margin-bottom: 5px;"><strong style="color: #888;">INVOICE NO:</strong> <span id="pNumber" style="font-weight: 600;"></span></p>
+            <p><strong style="color: #888;">DATE:</strong> <span id="pDate" style="font-weight: 600;"></span></p>
         </div>
     </div>
 
     <table>
         <thead>
-            <tr style="background: #f8f8f8;">
-                <th style="font-family: 'Montserrat'; font-size: 0.7rem; text-transform: uppercase;">Description</th>
-                <th class="price-col" style="font-family: 'Montserrat'; font-size: 0.7rem; text-transform: uppercase;">Amount</th>
+            <tr>
+                <th style="text-align: left;">Description of Services</th>
+                <th class="price-col" style="text-align: right;">Total Amount</th>
             </tr>
         </thead>
-        <tbody style="font-family: 'Montserrat'; font-size: 0.85rem;">
+        <tbody style="font-family: 'Montserrat'; font-size: 0.9rem;">
             <tr>
                 <td>
-                    <strong id="pService" style="font-size: 0.9rem;"></strong><br>
-                    <span style="font-size: 0.7rem; color: #666;">Registered Massage Therapy Treatment</span>
+                    <strong id="pService" style="color: #1a3a36;"></strong><br>
+                    <span style="font-size: 0.75rem; color: #666;">Registered Massage Therapy (RMT) Treatment Session</span>
                 </td>
-                <td id="pSub" class="price-col" style="font-weight: 600;"></td>
+                <td id="pSub" class="price-col" style="font-weight: 600; text-align: right;"></td>
             </tr>
             <tr>
-                <td style="text-align: right;">GST (5%)</td>
-                <td id="pTax" class="price-col"></td>
+                <td style="text-align: right; color: #666; font-size: 0.8rem;">GST (5.0%)</td>
+                <td id="pTax" class="price-col" style="text-align: right; font-size: 0.8rem;"></td>
             </tr>
             <tr>
-                <td style="text-align: right; color: #888;">Insurance Benefit Applied</td>
-                <td id="pIns" class="price-col" style="color: #888;"></td>
+                <td style="text-align: right; color: #bda282; font-style: italic;">Insurance Coverage Applied</td>
+                <td id="pIns" class="price-col" style="text-align: right; color: #bda282;"></td>
             </tr>
-            <tr style="background: #1a3a36; color: white; font-weight: 600;">
-                <td style="text-align: right; text-transform: uppercase; letter-spacing: 1px; border: none;">Total Balance Paid</td>
-                <td id="pTotal" class="price-col" style="font-size: 1rem; border: none;"></td>
+            <tr style="background: #f9f9f9; font-weight: 600;">
+                <td style="text-align: right; text-transform: uppercase; font-size: 0.8rem; border-bottom: 2px solid #1a3a36;">Total Balance Paid</td>
+                <td id="pTotal" class="price-col" style="font-size: 1.2rem; color: #1a3a36; text-align: right; border-bottom: 2px solid #1a3a36;"></td>
             </tr>
         </tbody>
     </table>
 
-    <div style="margin-top: 30px; font-family: 'Montserrat'; font-size: 0.75rem;">
+    <div style="margin-top: 50px; font-family: 'Montserrat'; font-size: 0.75rem; border-top: 1px solid #eee; padding-top: 20px;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-            <div style="line-height: 1.6;">
-                <p><strong>Practitioner:</strong> Getachew Addgeh, Registered Massage Therapist(RMT)</p>
-                <p><strong>RMT NHPC#:</strong> 23215</p>
-                <p><strong>GST Business #:</strong> 785119421</p>
+            <div style="line-height: 1.8;">
+                <p><strong>Practitioner:</strong> Getachew Addgeh, RMT</p>
+                <p><strong>RMT NHPC License#:</strong> 23215</p>
+                <p><strong>GST/Business Registration#:</strong> 785119421</p>
             </div>
-            <div style="text-align: right;">
-                <p style="font-family: 'Cormorant Garamond'; font-style: italic; font-size: 1.1rem; color: var(--primary);">
-                    Thank you for your service and see you soon!
+            <div style="text-align: right; max-width: 250px;">
+                <p style="font-family: 'Cormorant Garamond'; font-style: italic; font-size: 1.2rem; color: #1a3a36; line-height: 1.2;">
+                    "Restoration is not a luxury, it is a necessity."
                 </p>
+                <p style="margin-top: 10px; font-size: 0.65rem; color: #888;">This is an official medical receipt for insurance and tax purposes.</p>
             </div>
         </div>
     </div>
@@ -550,7 +565,7 @@
         const gst = price * 0.05;
         const total = (price + gst) - ins;
 
-        document.getElementById('pDate').innerText = new Date().toLocaleDateString();
+        document.getElementById('pDate').innerText = new Date().toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
         document.getElementById('pNumber').innerText = "WMT-" + Math.floor(100000 + Math.random() * 900000);
         document.getElementById('pName').innerText = name.toUpperCase();
         document.getElementById('pService').innerText = service;
