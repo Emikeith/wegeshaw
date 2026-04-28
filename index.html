@@ -164,19 +164,29 @@
         .testimonial-slide { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; transition: 1s ease; visibility: hidden; }
         .testimonial-slide.active { opacity: 1; visibility: visible; }
         .t-quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 4vw, 1.8rem); font-style: italic; color: var(--primary); margin-bottom: 25px; display: block; }
+        .t-author { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); }
 
-        /* Admin Portal Styles */
+        /* Admin Portal & Voice Styles */
         #admin-portal { display: none; background: #f0f2f1; padding: 40px 20px; border-top: 3px solid var(--accent); }
         .admin-form { background: white; padding: 30px; max-width: 500px; margin: 0 auto; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .admin-form label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--primary); }
+        .admin-form label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--primary); display: block; margin-bottom: 5px;}
         .admin-input { width: 100%; padding: 12px; margin: 8px 0 20px 0; border: 1px solid #ddd; border-radius: 2px; font-family: inherit; }
+
+        .voice-btn { width: 100%; background: var(--primary); margin-bottom: 10px; border-radius: 50px; font-weight: 700; cursor: pointer; color: white; border: none; padding: 15px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .voice-btn.listening { background: #e74c3c; animation: pulse-red 1.5s infinite; }
+        
+        #voiceStatus { font-size: 0.7rem; text-align: center; margin-bottom: 20px; color: var(--primary); font-weight: 600; }
+        .status-pulse { animation: opacity-pulse 2s infinite; }
+
+        @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(231, 76, 60, 0); } 100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); } }
+        @keyframes opacity-pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
 
         /* Footer */
         footer { background: var(--primary); color: white; padding: 80px 20px; text-align: center; }
         .hours-row { display: flex; justify-content: space-between; max-width: 300px; margin: 10px auto; font-size: 0.85rem; opacity: 0.7; }
         .admin-link { margin-top: 25px; display: inline-block; font-size: 0.6rem; color: rgba(255,255,255,0.3); text-decoration: none; cursor: pointer; letter-spacing: 1px; }
 
-        /* PRINT STYLES - FORCED ONE PAGE */
+        /* PRINT STYLES */
         @media print {
             @page { margin: 0.5cm; size: auto; }
             body * { visibility: hidden; }
@@ -187,8 +197,6 @@
                 display: block !important;
                 background: white !important;
                 padding: 30px !important;
-                max-height: 100vh;
-                overflow: hidden;
             }
         }
         #printableReceipt { display: none; padding: 40px; background: white; color: #000; }
@@ -197,12 +205,6 @@
         #printableReceipt .price-col { text-align: right; width: 120px; white-space: nowrap; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        @media (max-width: 768px) {
-            .nav-arrow { width: 40px; height: 40px; font-size: 1rem; }
-            .arrow-left { left: 10px; }
-            .arrow-right { right: 10px; }
-        }
     </style>
 </head>
 <body>
@@ -332,8 +334,11 @@
 
 <section id="admin-portal">
     <div class="admin-form">
-        <h2 style="font-family: 'Cormorant Garamond'; text-align: center; margin-bottom: 20px;">Receipt Generator</h2>
+        <h2 style="font-family: 'Cormorant Garamond'; text-align: center; margin-bottom: 10px;">Practitioner Portal</h2>
         
+        <button id="voiceStartBtn" class="voice-btn" onclick="startVoiceAssistant()">Start Voice Assistant</button>
+        <p id="voiceStatus" class="status-pulse">Listening for: <strong>"Hey Wegeshaw"</strong></p>
+
         <label for="admName">Client Full Name</label>
         <input type="text" id="admName" class="admin-input" placeholder="e.g. John Doe">
         
@@ -476,6 +481,10 @@
             <span class="t-quote">"The level of care is unmatched. As an athlete, I appreciate the deep anatomical understanding and precise touch."</span>
             <span class="t-author">— Sarah J.</span>
         </div>
+        <div class="testimonial-slide">
+            <span class="t-quote">"A truly spiritual experience. Getachew has a gift for finding tension I didn't even know I had."</span>
+            <span class="t-author">— Michael R.</span>
+        </div>
     </div>
 </section>
 
@@ -493,6 +502,7 @@
 </footer>
 
 <script>
+    // --- UI ENGINE ---
     function initReveal() {
         document.querySelectorAll('.reveal').forEach(r => {
             if (r.getBoundingClientRect().top < window.innerHeight * 0.9) r.classList.add('active');
@@ -519,6 +529,15 @@
         e.currentTarget.classList.add('active');
     }
 
+    let curT = 0;
+    const tSlides = document.querySelectorAll('.testimonial-slide');
+    setInterval(() => {
+        tSlides[curT].classList.remove('active');
+        curT = (curT + 1) % tSlides.length;
+        tSlides[curT].classList.add('active');
+    }, 5000);
+
+    // --- BOOKING LOGIC ---
     let selectedMassage = "";
     function openBooking() { document.getElementById('bookingModal').classList.add('active'); goToStep(1); }
     function closeBooking() { document.getElementById('bookingModal').classList.remove('active'); }
@@ -538,11 +557,13 @@
         goToStep(3);
     }
 
+    // --- ADMIN / RECEIPT ENGINE ---
     function unlockAdmin() {
         const pin = prompt("Enter Practitioner PIN:");
         if (pin === "1234") {
             document.getElementById('admin-portal').style.display = 'block';
             document.getElementById('admin-portal').scrollIntoView({ behavior: 'smooth' });
+            initWakeWord();
         } else {
             alert("Access Denied.");
         }
@@ -555,7 +576,6 @@
         const ins = parseFloat(document.getElementById('admIns').value) || 0;
         
         if(!name) { alert("Please enter client name"); return; }
-
         const gst = price * 0.05;
         const total = (price + gst) - ins;
 
@@ -568,14 +588,90 @@
         document.getElementById('pIns').innerText = "-$" + ins.toFixed(2);
         document.getElementById('pTotal').innerText = "$" + total.toFixed(2);
 
-        // Show receipt then print
-        const receipt = document.getElementById('printableReceipt');
-        receipt.style.display = 'block';
+        window.print();
+    }
+
+    // --- VOICE COMMAND ENGINE ---
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let wakeRecognition;
+    let isAssistantRunning = false;
+
+    function initWakeWord() {
+        if (!SpeechRecognition) return;
         
-        setTimeout(() => {
-            window.print();
-            receipt.style.display = 'none';
-        }, 300);
+        wakeRecognition = new SpeechRecognition();
+        wakeRecognition.continuous = true;
+        wakeRecognition.interimResults = false;
+        wakeRecognition.lang = 'en-US';
+
+        wakeRecognition.onresult = (event) => {
+            const transcript = event.results[event.results.length - 1][0].transcript.toLowerCase();
+            console.log("Background hearing:", transcript);
+
+            // CHANGED: Added custom wake words
+            if ((transcript.includes("hey wegeshaw") || transcript.includes("generate receipt") || transcript.includes("start assistant")) && !isAssistantRunning) {
+                startVoiceAssistant();
+            }
+        };
+
+        wakeRecognition.onend = () => { if(!isAssistantRunning) wakeRecognition.start(); };
+        wakeRecognition.start();
+    }
+
+    function startVoiceAssistant() {
+        isAssistantRunning = true;
+        if(wakeRecognition) wakeRecognition.stop();
+
+        const btn = document.getElementById('voiceStartBtn');
+        const status = document.getElementById('voiceStatus');
+        
+        btn.classList.add('listening');
+        status.classList.remove('status-pulse');
+
+        const prompts = [
+            { q: "What is the client's name?", id: "admName" },
+            { q: "What is the base price?", id: "admPrice" },
+            { q: "What is the insurance amount?", id: "admIns" }
+        ];
+
+        let i = 0;
+        function ask() {
+            status.innerText = "Current Step: " + prompts[i].q;
+            const utter = new SpeechSynthesisUtterance(prompts[i].q);
+            
+            utter.onend = () => {
+                const rec = new SpeechRecognition();
+                rec.lang = 'en-US';
+                rec.start();
+                
+                rec.onresult = (e) => {
+                    let val = e.results[0][0].transcript;
+                    // Logic to extract numbers for price fields
+                    if(prompts[i].id !== "admName") val = val.replace(/[^0-9.]/g, '');
+                    document.getElementById(prompts[i].id).value = val;
+                    i++;
+                    if(i < prompts.length) ask();
+                    else finishAssistant();
+                };
+            };
+            window.speechSynthesis.speak(utter);
+        }
+
+        function finishAssistant() {
+            status.innerText = "Complete. Printing...";
+            btn.classList.remove('listening');
+            const finalUtter = new SpeechSynthesisUtterance("Receipt generated. Printing now.");
+            finalUtter.onend = () => {
+                generateAndPrint();
+                isAssistantRunning = false;
+                status.innerText = "Listening for: 'Hey Wegeshaw'";
+                status.classList.add('status-pulse');
+                initWakeWord();
+            };
+            window.speechSynthesis.speak(finalUtter);
+        }
+
+        ask();
     }
 </script>
 
