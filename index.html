@@ -339,9 +339,6 @@
         <button id="voiceStartBtn" class="voice-btn" onclick="startVoiceAssistant()">Start Voice Assistant</button>
         <p id="voiceStatus" class="status-pulse">Listening for: <strong>"Hey Wegeshaw"</strong></p>
 
-        <label for="pEmail">Practitioner Gmail (for logs)</label>
-        <input type="email" id="pEmail" class="admin-input" value="getachew.addgeh@gmail.com">
-
         <label for="admName">Client Full Name</label>
         <input type="text" id="admName" class="admin-input" placeholder="e.g. John Doe">
         
@@ -365,7 +362,7 @@
             </div>
         </div>
 
-        <button class="cta-btn" style="width: 100%; border-radius: 2px;" onclick="generateAndPrint()">Generate Receipt & Prep Email</button>
+        <button class="cta-btn" style="width: 100%; border-radius: 2px;" onclick="generateAndPrint()">Generate Receipt</button>
         <button class="admin-link" style="color: #666; margin-top: 15px; background: none; border: none; width: 100%;" onclick="location.reload()">Lock Portal</button>
     </div>
 </section>
@@ -417,7 +414,7 @@
                 <td id="pTax" class="price-col" style="padding: 10px 12px;"></td>
             </tr>
             <tr>
-                <td style="text-align: right; color: #888; padding: 10px 12px;">Insurance Benefit Applied</td>
+                <td style="text-align: right; color: #888; padding: 10px 12px;">Insurance Benefit Benefit Applied</td>
                 <td id="pIns" class="price-col" style="color: #888; padding: 10px 12px;"></td>
             </tr>
             <tr style="background: #1a3a36; color: white; font-weight: 600;">
@@ -505,7 +502,7 @@
 </footer>
 
 <script>
-    // UI ENGINE
+    // --- UI ENGINE ---
     function initReveal() {
         document.querySelectorAll('.reveal').forEach(r => {
             if (r.getBoundingClientRect().top < window.innerHeight * 0.9) r.classList.add('active');
@@ -540,7 +537,7 @@
         tSlides[curT].classList.add('active');
     }, 5000);
 
-    // BOOKING LOGIC
+    // --- BOOKING LOGIC ---
     let selectedMassage = "";
     function openBooking() { document.getElementById('bookingModal').classList.add('active'); goToStep(1); }
     function closeBooking() { document.getElementById('bookingModal').classList.remove('active'); }
@@ -560,22 +557,30 @@
         goToStep(3);
     }
 
-    // ADMIN & RECEIPT LOGIC (WITH EMAIL & CORRECT DEDUCTION)
+    // --- ADMIN / RECEIPT ENGINE ---
+    function unlockAdmin() {
+        const pin = prompt("Enter Practitioner PIN:");
+        if (pin === "1234") {
+            document.getElementById('admin-portal').style.display = 'block';
+            document.getElementById('admin-portal').scrollIntoView({ behavior: 'smooth' });
+            initWakeWord();
+        } else {
+            alert("Access Denied.");
+        }
+    }
+
     function generateAndPrint() {
-        const practitionerEmail = document.getElementById('pEmail').value;
         const name = document.getElementById('admName').value;
         const service = document.getElementById('admService').value;
         const price = parseFloat(document.getElementById('admPrice').value) || 0;
         const ins = parseFloat(document.getElementById('admIns').value) || 0;
         
         if(!name) { alert("Please enter client name"); return; }
-        
-        // LOGIC: Deduct insurance from (Price + GST)
         const gst = price * 0.05;
         const total = (price + gst) - ins;
 
-        document.getElementById('pDate').innerText = new Date().toLocaleDateString();
-        document.getElementById('pNumber').innerText = "WMT-" + Math.floor(Math.random() * 900000 + 100000);
+        document.getElementById('pDate').innerText = new Date().toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
+        document.getElementById('pNumber').innerText = "WMT-" + Math.floor(100000 + Math.random() * 900000);
         document.getElementById('pName').innerText = name.toUpperCase();
         document.getElementById('pService').innerText = service;
         document.getElementById('pSub').innerText = "$" + price.toFixed(2);
@@ -583,82 +588,92 @@
         document.getElementById('pIns').innerText = "-$" + ins.toFixed(2);
         document.getElementById('pTotal').innerText = "$" + total.toFixed(2);
 
-        // Prepare Email
-        const mailSubject = encodeURIComponent(`RMT Receipt - ${name}`);
-        const mailBody = encodeURIComponent(`Receipt Summary:\n\nClient: ${name}\nService: ${service}\nTotal Paid: $${total.toFixed(2)}\nInsurance Deducted: $${ins.toFixed(2)}\n\nGenerated via Wegeshaw Admin Portal.`);
-        
-        // Open Print
-        setTimeout(() => { window.print(); }, 500);
-        
-        // Open Email Draft
-        window.location.href = `mailto:${practitionerEmail}?subject=${mailSubject}&body=${mailBody}`;
+        window.print();
     }
 
-    function unlockAdmin() {
-        const pin = prompt("Practitioner PIN:");
-        if (pin === "1234") {
-            document.getElementById('admin-portal').style.display = 'block';
-            document.getElementById('admin-portal').scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-
-    // VOICE ASSISTANT LOGIC
+    // --- VOICE COMMAND ENGINE ---
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     let wakeRecognition;
     let isAssistantRunning = false;
 
     function initWakeWord() {
         if (!SpeechRecognition) return;
+        
         wakeRecognition = new SpeechRecognition();
         wakeRecognition.continuous = true;
+        wakeRecognition.interimResults = false;
+        wakeRecognition.lang = 'en-US';
+
         wakeRecognition.onresult = (event) => {
             const transcript = event.results[event.results.length - 1][0].transcript.toLowerCase();
-            if ((transcript.includes("hey wegeshaw") || transcript.includes("generate receipt")) && !isAssistantRunning) {
+            console.log("Background hearing:", transcript);
+
+            // CHANGED: Added custom wake words
+            if ((transcript.includes("hey wegeshaw") || transcript.includes("generate receipt") || transcript.includes("start assistant")) && !isAssistantRunning) {
                 startVoiceAssistant();
             }
         };
+
+        wakeRecognition.onend = () => { if(!isAssistantRunning) wakeRecognition.start(); };
         wakeRecognition.start();
     }
 
     function startVoiceAssistant() {
         isAssistantRunning = true;
         if(wakeRecognition) wakeRecognition.stop();
+
+        const btn = document.getElementById('voiceStartBtn');
         const status = document.getElementById('voiceStatus');
         
+        btn.classList.add('listening');
+        status.classList.remove('status-pulse');
+
         const prompts = [
             { q: "What is the client's name?", id: "admName" },
-            { q: "What is the price?", id: "admPrice" },
-            { q: "Is there an insurance amount?", id: "admIns" }
+            { q: "What is the base price?", id: "admPrice" },
+            { q: "What is the insurance amount?", id: "admIns" }
         ];
 
         let i = 0;
         function ask() {
-            status.innerText = "Listening: " + prompts[i].q;
+            status.innerText = "Current Step: " + prompts[i].q;
             const utter = new SpeechSynthesisUtterance(prompts[i].q);
+            
             utter.onend = () => {
                 const rec = new SpeechRecognition();
+                rec.lang = 'en-US';
                 rec.start();
+                
                 rec.onresult = (e) => {
                     let val = e.results[0][0].transcript;
+                    // Logic to extract numbers for price fields
                     if(prompts[i].id !== "admName") val = val.replace(/[^0-9.]/g, '');
                     document.getElementById(prompts[i].id).value = val;
                     i++;
                     if(i < prompts.length) ask();
-                    else {
-                        status.innerText = "Processing...";
-                        window.speechSynthesis.speak(new SpeechSynthesisUtterance("Generating receipt."));
-                        generateAndPrint();
-                        isAssistantRunning = false;
-                        initWakeWord();
-                    }
+                    else finishAssistant();
                 };
             };
             window.speechSynthesis.speak(utter);
         }
+
+        function finishAssistant() {
+            status.innerText = "Complete. Printing...";
+            btn.classList.remove('listening');
+            const finalUtter = new SpeechSynthesisUtterance("Receipt generated. Printing now.");
+            finalUtter.onend = () => {
+                generateAndPrint();
+                isAssistantRunning = false;
+                status.innerText = "Listening for: 'Hey Wegeshaw'";
+                status.classList.add('status-pulse');
+                initWakeWord();
+            };
+            window.speechSynthesis.speak(finalUtter);
+        }
+
         ask();
     }
-
-    window.onload = initWakeWord;
 </script>
+
 </body>
 </html>
