@@ -341,8 +341,8 @@
 
         <label for="admName">Client Full Name</label>
         <input type="text" id="admName" class="admin-input" placeholder="e.g. John Doe">
-        <label for="admName">Appointment Time / Duration</label>
-        <input type="text" id="admName" class="admin-input" placeholder="e.g. 2pm/1h">
+        <label for="admTime">Appointment Time / Duration</label>
+        <input type="text" id="admTime" class="admin-input" placeholder="e.g. 2pm/1h">
         
         <label for="admService">Massage Type</label>
         <select id="admService" class="admin-input">
@@ -393,6 +393,7 @@
         <div style="text-align: right;">
             <p><strong>RECEIPT NO:</strong> <span id="pNumber"></span></p>
             <p><strong>DATE:</strong> <span id="pDate"></span></p>
+            <p><strong>APPT TIME/DUR:</strong> <span id="pTime"></span></p>
         </div>
     </div>
 
@@ -573,6 +574,7 @@
 
     function generateAndPrint() {
         const name = document.getElementById('admName').value;
+        const apptTime = document.getElementById('admTime').value;
         const service = document.getElementById('admService').value;
         const price = parseFloat(document.getElementById('admPrice').value) || 0;
         const ins = parseFloat(document.getElementById('admIns').value) || 0;
@@ -584,6 +586,7 @@
         document.getElementById('pDate').innerText = new Date().toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
         document.getElementById('pNumber').innerText = "WMT-" + Math.floor(100000 + Math.random() * 900000);
         document.getElementById('pName').innerText = name.toUpperCase();
+        document.getElementById('pTime').innerText = apptTime || "N/A";
         document.getElementById('pService').innerText = service;
         document.getElementById('pSub').innerText = "$" + price.toFixed(2);
         document.getElementById('pTax').innerText = "$" + gst.toFixed(2);
