@@ -584,7 +584,7 @@
         const total = (price + gst) - ins;
 
         document.getElementById('pDate').innerText = new Date().toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
-        document.getElementById('pNumber').innerText = "WMT-" + Math.floor(100000 + Math.random() * 900000);
+        document.getElementById('pNumber').innerText = "WMT-" + new Date().toISOString().replace(/[^0-9]/g, '').slice(2, 14);
         document.getElementById('pName').innerText = name.toUpperCase();
         document.getElementById('pTime').innerText = apptTime || "N/A";
         document.getElementById('pService').innerText = service;
